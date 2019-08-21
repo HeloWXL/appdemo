@@ -77,4 +77,13 @@ public class StudentService {
     map.put("count",count);
     return map;
   }
+
+  /**
+   * 根据学号查询学生信息 用于登录判断密码是否相一致
+   * @param sno
+   * @return
+   */
+  public Student selectBySno(String sno){
+    return studentMapper.selectBySno(sno);
+  }
 }

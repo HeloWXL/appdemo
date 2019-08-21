@@ -3,12 +3,14 @@ package com.qztc.appdemo.controller;
 import com.qztc.appdemo.config.DataResult;
 import com.qztc.appdemo.model.Student;
 import com.qztc.appdemo.service.StudentService;
+import com.qztc.appdemo.utils.Md5Utils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.omg.CORBA.INTERNAL;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.ResultSet;
 
 /**
@@ -56,6 +58,22 @@ public class StudentController {
     result.setBody(studentService.updateByPrimaryKeySelective(student));
     return result;
   }
+
+  @ApiOperation(value = "学生登录")
+  @PostMapping("/checkLogin")
+  public DataResult<Boolean> checkLogin(@RequestParam("sno") String sno,@RequestParam("password") String password,HttpServletRequest request){
+      Student student = studentService.selectBySno(sno);
+      DataResult<Boolean> result = new DataResult<>();
+    if (Md5Utils.getSaltverifyMD5(password,student.getStudentPassword())) {
+      result.setBody(true);
+      request.getSession().setAttribute("studentsession",student);
+    } else {
+      request.getSession().setAttribute("studentsession",null);
+      result.setBody(false);
+    }
+    return result;
+  }
+
 
 
 

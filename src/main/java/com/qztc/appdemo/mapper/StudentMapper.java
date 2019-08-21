@@ -38,4 +38,12 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @return int
      */
     int updateByPrimaryKeySelective(Student record);
+
+
+    /**
+     * 根据学号查询学生信息
+     * @param sno
+     * @return
+     */
+    Student selectBySno(String sno);
 }
