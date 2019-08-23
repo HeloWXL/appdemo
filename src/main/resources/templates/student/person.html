@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body{
+				font-size: 14px;
+			}
+			.mui-bar {
+				margin-top: 10px;
+			}
+
+			.mui-title {
+				color: #FFFFFF;
+			}
+			.mui-input-row img{
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+			}
+			input{
+				font-size: 14px;
+				color: #555555;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav mui-badge-primary">
+			<h1 class="mui-title">我的信息</h1>
+		</header>
+
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div class="mui-input-row">
+						<label>头像</label>
+						<img src="/images/dog.png" name="userPic">
+					</div>
+					<div class="mui-input-row">
+						<label>姓名</label>
+						<input type="text" class="mui-input-clear" value="wangxianlin" name="username">
+					</div>
+					
+					<div class="mui-input-row">
+						<label>学号</label>
+						<input type="text" class="mui-input-clear" value="151303011" name="sno">
+					</div>
+				
+					<div class="mui-input-row">
+						<label>年龄</label>
+						<input type="text" class="mui-input-clear" value="23" name="age">
+					</div>
+						<div class="mui-input-row">
+						<label>性别</label>
+						<input type="text" class="mui-input-clear" value="男" name="sex">
+					</div>
+					<div class="mui-input-row">
+						<label>QQ</label>
+						<input type="text" class="mui-input-clear" value="756316064" name="qq">
+					</div>
+					<div class="mui-input-row">
+						<label>邮箱</label>
+						<input type="text" class="mui-input-clear" value="756316064@qq.com" name="email">
+					</div>
+						<div class="mui-input-row">
+						<label>专业</label>
+						<input type="text" class="mui-input-clear" value="信息管理与信息系统" name="profession">
+					</div>
+					<div class="mui-input-row">
+						<label>学院</label>
+						<input type="text" class="mui-input-clear" value="数学与计算机科学学院" name="apartment">
+					</div>
+			</ul>
+		</div>
+
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item">
+				<span class="mui-icon mui-icon-chatbubble"></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item">
+				<span class="mui-icon mui-icon-person"></span>
+				<span class="mui-tab-label">我的信息</span>
+			</a>
+		</nav>
+		<script src="/js/mui.min.js"></script>
+		<script src="/js/jquery-2.1.4.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+        // 获取session的值
+        $.ajax({
+          url:"/student/getStudentSession",
+          data:{"studentBean":"studentsession"},
+          dataType:"json",
+          success:function (data) {
+
+            $("input[name='userPic']").attr("src","/images/p.png")
+            $("input[name='username']").val(data.body.studentName);
+            $("input[name='sno']").val();
+            $("input[name='age']").val();
+            $("input[name='sex']").val();
+            $("input[name='qq']").val();
+            $("input[name='email']").val();
+            $("input[name='profession']").val();
+            $("input[name='apartment']").val();
+
+							console.log(data.body.studentName)
+          }
+        });
+      });
+
+
+
+
+		</script>
+	</body>
+
+</html>

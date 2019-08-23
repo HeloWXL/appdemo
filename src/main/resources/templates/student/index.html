@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>学生首页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/css/mui.min.css" rel="stylesheet" />
+		<style>
+			body{
+				background-color: #EEEEEE;
+			}
+			.mui-content div{
+				border-radius: 15px;
+				width: 168px;
+				height: 148px;
+				background-color: #FFFFFF;
+				float: left;
+				margin: 11px 9px;
+			}
+			div a{
+				text-align: center;
+			}
+			a p{
+				color: #000000;
+			}
+			img{
+				margin-left: 35px;
+				margin-top: 15px;
+				border-radius: 15px;
+				width:100px;
+				height: 100px;
+			}
+			.mui-title{
+				color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav mui-badge-primary">
+			<h1 class="mui-title">学生首页</h1>
+		</header>
+		<div class="mui-content">
+			<div id="attendance">
+				<a href="">
+					<img src="/images/人脸识别.png" />
+					<p>学生考勤</p>
+				</a>
+			</div>
+			<div id="mycourse">
+				<a href="">
+					<img src="/images/课程.png" />
+					<p>我的课程</p>
+				</a>
+			</div>
+			<div  id="attendancelist">
+				<a href="">
+					<img src="images/考勤记录.png" />
+					<p>考勤记录</p>
+				</a>
+			</div>
+			<div id="mycourselist">
+				<a href="">
+					<img src="/images/课表管理.png" />
+					<p>我的课表</p>
+				</a>
+			</div>
+			<div>
+				<a href="">
+					<img src="/images/人脸识别.png" />
+					<p>学生考勤</p>
+				</a>
+			</div>
+			<div>
+				<a href="">
+					<img src="/images/人脸识别.png" />
+					<p>学生考勤</p>
+				</a>
+			</div>
+		</div>
+
+
+
+	
+	</body>
+	<script src="/js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			
+			mui("#attendance").on('tap','img',function(){
+				mui.alert("正在建设中.....")
+			})
+			
+			mui("#mycourse").on('tap','img',function(){
+				mui.alert("正在建设中.....")
+			})
+			
+			mui("#attendancelist").on('tap','img',function(){
+				mui.alert("正在建设中.....")
+			})
+			
+			mui("#mycourselist").on('tap','img',function(){
+				mui.alert("正在建设中.....")
+			})
+			
+			
+			
+		</script>
+</html>
