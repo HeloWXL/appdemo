@@ -6,6 +6,7 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="/css/mui.min.css" rel="stylesheet" />
+		<link rel="shortcut icon" href="/ico/app.ico"/>
 		<style type="text/css">
 			body{
 				font-size: 14px;
@@ -39,47 +40,51 @@
 				<li class="mui-table-view-cell">
 					<div class="mui-input-row">
 						<label>头像</label>
-						<img src="/images/dog.png" name="userPic">
+						<img src="/images/dogs.png" name="userPic">
 					</div>
 					<div class="mui-input-row">
 						<label>姓名</label>
-						<input type="text" class="mui-input-clear" value="wangxianlin" name="username">
+						<input type="text" class="mui-input-clear"  name="username">
 					</div>
 					
 					<div class="mui-input-row">
 						<label>学号</label>
-						<input type="text" class="mui-input-clear" value="151303011" name="sno">
+						<input type="text" class="mui-input-clear"  name="sno">
 					</div>
 				
 					<div class="mui-input-row">
 						<label>年龄</label>
-						<input type="text" class="mui-input-clear" value="23" name="age">
+						<input type="text" class="mui-input-clear"  name="age">
 					</div>
 						<div class="mui-input-row">
 						<label>性别</label>
-						<input type="text" class="mui-input-clear" value="男" name="sex">
+						<input type="text" class="mui-input-clear" name="sex">
 					</div>
 					<div class="mui-input-row">
 						<label>QQ</label>
-						<input type="text" class="mui-input-clear" value="756316064" name="qq">
+						<input type="text" class="mui-input-clear" name="qq">
 					</div>
 					<div class="mui-input-row">
 						<label>邮箱</label>
-						<input type="text" class="mui-input-clear" value="756316064@qq.com" name="email">
+						<input type="text" class="mui-input-clear"  name="email">
 					</div>
 						<div class="mui-input-row">
 						<label>专业</label>
-						<input type="text" class="mui-input-clear" value="信息管理与信息系统" name="profession">
+						<input type="text" class="mui-input-clear"  name="profession">
 					</div>
 					<div class="mui-input-row">
-						<label>学院</label>
-						<input type="text" class="mui-input-clear" value="数学与计算机科学学院" name="apartment">
+					<label>学院</label>
+					<input type="text" class="mui-input-clear"  name="apartment">
+				</div>
+					<div class="mui-input-row">
+						<label>学校</label>
+						<input type="text" class="mui-input-clear"  name="school">
 					</div>
 			</ul>
 		</div>
 
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item mui-active">
+			<a class="mui-tab-item ">
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
@@ -88,7 +93,7 @@
 				<span class="mui-tab-label">消息</span>
 			</a>
 			<a class="mui-tab-item">
-				<span class="mui-icon mui-icon-person"></span>
+				<span class="mui-icon mui-icon-person mui-active"></span>
 				<span class="mui-tab-label">我的信息</span>
 			</a>
 		</nav>
@@ -99,22 +104,26 @@
 			$(function() {
         // 获取session的值
         $.ajax({
-          url:"/student/getStudentSession",
-          data:{"studentBean":"studentsession"},
-          dataType:"json",
+          url:'/studentApi/getStudentSession',
+          data:{studentBean:'studentsession'},
+          dataType:'json',
+					type:'post',
           success:function (data) {
-
-            $("input[name='userPic']").attr("src","/images/p.png")
+            if(data.body==null){
+              mui.alert('用户未登录',function() {
+								location.href="/toLogin";
+              });
+						}
+            $("img[name='userPic']").attr('src',data.body.studentPic);
             $("input[name='username']").val(data.body.studentName);
-            $("input[name='sno']").val();
-            $("input[name='age']").val();
-            $("input[name='sex']").val();
-            $("input[name='qq']").val();
-            $("input[name='email']").val();
-            $("input[name='profession']").val();
-            $("input[name='apartment']").val();
-
-							console.log(data.body.studentName)
+            $("input[name='sno']").val(data.body.studentSno);
+            $("input[name='age']").val(data.body.studentAge);
+            $("input[name='sex']").val(data.body.studentSex);
+            $("input[name='qq']").val(data.body.studentQq);
+            $("input[name='email']").val(data.body.studentEmail);
+            $("input[name='profession']").val(data.body.profession.professionName);
+            $("input[name='apartment']").val(data.body.profession.apartment);
+            $("input[name='school']").val(data.body.profession.school);
           }
         });
       });

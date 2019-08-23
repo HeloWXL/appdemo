@@ -36,5 +36,7 @@ public class Student {
 
     private Date createTime;
 
+    private Profession profession;
+
 
 }

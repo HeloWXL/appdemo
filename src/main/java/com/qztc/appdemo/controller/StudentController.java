@@ -1,7 +1,9 @@
 package com.qztc.appdemo.controller;
 
 import com.qztc.appdemo.config.DataResult;
+import com.qztc.appdemo.model.Profession;
 import com.qztc.appdemo.model.Student;
+import com.qztc.appdemo.service.ProfessionService;
 import com.qztc.appdemo.service.StudentService;
 import com.qztc.appdemo.utils.Md5Utils;
 import io.swagger.annotations.Api;
@@ -21,11 +23,13 @@ import java.sql.ResultSet;
  */
 @Api(tags = "学生接口")
 @RestController
-@RequestMapping("student")
+@RequestMapping("studentApi")
 public class StudentController {
 
   @Resource
   private StudentService studentService;
+  @Resource
+  private ProfessionService professionService;
 
   @ApiOperation(value = "根据ID查询学生信息")
   @GetMapping("/selectByStudentId/{id}")
@@ -63,8 +67,12 @@ public class StudentController {
   @PostMapping("/checkLogin")
   public DataResult<Boolean> checkLogin(@RequestParam("sno") String sno,@RequestParam("password") String password,HttpServletRequest request){
       Student student = studentService.selectBySno(sno);
+
       DataResult<Boolean> result = new DataResult<>();
     if (Md5Utils.getSaltverifyMD5(password,student.getStudentPassword())) {
+      //根据学号的ID获取学生的专业相关信息
+      Profession profession = professionService.selectByPrimaryKey(student.getProfessionId());
+      student.setProfession(profession);
       result.setBody(true);
       request.getSession().setAttribute("studentsession",student);
     } else {
@@ -73,6 +81,22 @@ public class StudentController {
     }
     return result;
   }
+
+  @ApiOperation(value="获取学生的session对象")
+  @PostMapping("getStudentSession")
+  public DataResult<Student> getStudentSession(HttpServletRequest request,@RequestParam("studentBean") String studentBean){
+    DataResult<Student> result = new DataResult<>();
+    Student student = (Student) request.getSession().getAttribute(studentBean);
+    if(student==null){
+      result.setBody(null);
+      return result;
+    }else{
+      result.setBody(student);
+      return result;
+    }
+  }
+
+
 
 
 
