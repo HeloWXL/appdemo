@@ -38,4 +38,11 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
      * @return
      */
     int updateByPrimaryKeySelective(Teacher record);
+
+    /**
+     * 根据教师工号查询教师信息
+     * @param tno
+     * @return
+     */
+    Teacher selectByTno(String tno);
 }

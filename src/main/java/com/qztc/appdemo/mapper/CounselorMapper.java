@@ -2,6 +2,7 @@ package com.qztc.appdemo.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.qztc.appdemo.model.Counselor;
+import com.qztc.appdemo.model.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -40,5 +41,10 @@ public interface CounselorMapper extends BaseMapper<Counselor> {
      */
     int updateByPrimaryKeySelective(Counselor record);
 
-
+    /**
+     * 根据辅导员工号查询辅导员信息
+     * @param cno
+     * @return
+     */
+    Counselor selectByCno(String cno);
 }

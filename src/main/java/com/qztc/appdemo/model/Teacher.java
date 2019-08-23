@@ -17,7 +17,7 @@ public class Teacher {
 
     private String teacherName;
 
-    private Integer teacherTno;
+    private String teacherTno;
 
     private String teacherPassword;
 
@@ -28,5 +28,9 @@ public class Teacher {
     private Integer teacherAge;
 
     private Date createTime;
+
+    private Integer professionId;
+
+    private Profession profession;
 
 }

@@ -17,6 +17,8 @@ public class Leave {
 
     private String studentSno;
 
+    private String leaveTitle;
+
     private String leaveReason;
 
     private Date startTime;

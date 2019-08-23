@@ -5,6 +5,7 @@
 		<meta charset="utf-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="shortcut icon" href="/ico/app.ico"/>
 		<link href="/css/mui.min.css" rel="stylesheet" />
 		<link href="/css/mui.picker.min.css" rel="stylesheet" />
 		<style>
@@ -73,6 +74,10 @@
 								<input type="text" class="mui-input-clear"  disabled="true" id="studentsno">
 							</div>
 							<div class="mui-input-row">
+								<label>标题：</label>
+								<input type="text" class="mui-input-clear" id="leaveTitle">
+							</div>
+							<div class="mui-input-row">
 								<label>开始时间：</label>
 								<input type="text" class="mui-input-clear" placeholder="请选择开始时间" id="start">
 							</div>
@@ -137,11 +142,9 @@
           leaveReason : $("#leaveReason").val(),
           startTime : $("#start").val(),
           endTime : $("#end").val(),
+          leaveTitle:$("#leaveTitle").val(),
           coundelorId:1
         };
-
-        console.log(leave)
-
 				$.ajax({
           url:'/leaveApi/insertSelective',
           data:JSON.stringify(leave),
@@ -177,6 +180,8 @@
       $('#leaveReason').val('');
       $('#start').val('');
       $('#end').val('');
+      $('#leaveTtle').val('');
+
     }
 
 

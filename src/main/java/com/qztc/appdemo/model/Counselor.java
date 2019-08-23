@@ -23,4 +23,8 @@ public class Counselor {
     private Integer professionId;
 
     private Date createTime;
+
+    private String counselorCno;
+
+    private Profession profession;
 }

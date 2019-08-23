@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.qztc.appdemo.mapper.CounselorMapper;
 import com.qztc.appdemo.model.Counselor;
 import com.qztc.appdemo.model.Course;
+import com.qztc.appdemo.utils.Md5Utils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -40,6 +41,7 @@ public class CounselorService {
    * @return
    */
   public int insertSelective(Counselor record){
+    record.setCounselorPassword(Md5Utils.getSaltMD5(record.getCounselorPassword()));
     return counselorMapper.insertSelective(record);
   }
 
@@ -53,7 +55,7 @@ public class CounselorService {
   }
 
   /**
-   *
+   *  修改辅导员信息
    * @param record
    * @return
    */
@@ -75,5 +77,14 @@ public class CounselorService {
     map.put("list",counselors);
     map.put("count",count);
     return map;
+  }
+
+  /**
+   * 根据辅导员工号查询辅导员信息
+   * @param cno
+   * @return
+   */
+  public Counselor selectByCno(String cno){
+    return counselorMapper.selectByCno(cno);
   }
 }

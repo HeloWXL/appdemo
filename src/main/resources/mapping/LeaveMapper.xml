@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.qztc.appdemo.model.Leave" >
     <id column="leave_id" property="leaveId" jdbcType="INTEGER" />
     <result column="student_sno" property="studentSno" jdbcType="VARCHAR" />
+    <result column="leave_title" property="leaveTitle" jdbcType="VARCHAR" />
     <result column="leave_reason" property="leaveReason" jdbcType="VARCHAR" />
     <result column="start_time" property="startTime" jdbcType="DATE" />
     <result column="end_time" property="endTime" jdbcType="DATE" />
@@ -11,7 +12,7 @@
     <result column="is_read" property="isRead" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    leave_id, student_sno, leave_reason, start_time, end_time, coundelor_id, is_read
+    leave_id, student_sno, leave_reason, start_time, end_time, coundelor_id, is_read,leave_title
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -32,6 +33,9 @@
       </if>
       <if test="studentSno != null" >
         student_sno,
+      </if>
+      <if test="leaveTitle != null" >
+        leave_title,
       </if>
       <if test="leaveReason != null" >
         leave_reason,
@@ -56,6 +60,9 @@
       <if test="studentSno != null" >
         #{studentSno,jdbcType=VARCHAR},
       </if>
+      <if test="leaveTitle != null" >
+        #{leaveTitle,jdbcType=VARCHAR},
+      </if>
       <if test="leaveReason != null" >
         #{leaveReason,jdbcType=VARCHAR},
       </if>
@@ -73,11 +80,15 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.qztc.appdemo.model.Leave" >
     update leaves
     <set >
       <if test="studentSno != null" >
         student_sno = #{studentSno,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveTitle != null" >
+        leave_title = #{leaveTitle,jdbcType=VARCHAR},
       </if>
       <if test="leaveReason != null" >
         leave_reason = #{leaveReason,jdbcType=VARCHAR},

@@ -78,4 +78,15 @@ public class TeacherService {
     map.put("count",count);
     return map;
   }
+
+  /**
+   * 根据学号查询辅导员信息 用于登录判断密码是否相一致
+   * @param tno
+   * @return
+   */
+  public Teacher selectByTno(String tno){
+    return teacherMapper.selectByTno(tno);
+  }
+
+
 }
