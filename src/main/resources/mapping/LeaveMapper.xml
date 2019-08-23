@@ -3,7 +3,7 @@
 <mapper namespace="com.qztc.appdemo.mapper.LeaveMapper" >
   <resultMap id="BaseResultMap" type="com.qztc.appdemo.model.Leave" >
     <id column="leave_id" property="leaveId" jdbcType="INTEGER" />
-    <result column="student_sno" property="studentSno" jdbcType="INTEGER" />
+    <result column="student_sno" property="studentSno" jdbcType="VARCHAR" />
     <result column="leave_reason" property="leaveReason" jdbcType="VARCHAR" />
     <result column="start_time" property="startTime" jdbcType="DATE" />
     <result column="end_time" property="endTime" jdbcType="DATE" />
@@ -16,23 +16,16 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from leave
+    from leaves
     where leave_id = #{leaveId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from leave
     where leave_id = #{leaveId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.qztc.appdemo.model.Leave" >
-    insert into leave (leave_id, student_sno, leave_reason, 
-      start_time, end_time, coundelor_id, 
-      is_read)
-    values (#{leaveId,jdbcType=INTEGER}, #{studentSno,jdbcType=INTEGER}, #{leaveReason,jdbcType=VARCHAR}, 
-      #{startTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, #{coundelorId,jdbcType=INTEGER}, 
-      #{isRead,jdbcType=INTEGER})
-  </insert>
+
   <insert id="insertSelective" parameterType="com.qztc.appdemo.model.Leave" >
-    insert into leave
+    insert into leaves
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="leaveId != null" >
         leave_id,
@@ -61,7 +54,7 @@
         #{leaveId,jdbcType=INTEGER},
       </if>
       <if test="studentSno != null" >
-        #{studentSno,jdbcType=INTEGER},
+        #{studentSno,jdbcType=VARCHAR},
       </if>
       <if test="leaveReason != null" >
         #{leaveReason,jdbcType=VARCHAR},
@@ -81,10 +74,10 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.qztc.appdemo.model.Leave" >
-    update leave
+    update leaves
     <set >
       <if test="studentSno != null" >
-        student_sno = #{studentSno,jdbcType=INTEGER},
+        student_sno = #{studentSno,jdbcType=VARCHAR},
       </if>
       <if test="leaveReason != null" >
         leave_reason = #{leaveReason,jdbcType=VARCHAR},
@@ -104,14 +97,5 @@
     </set>
     where leave_id = #{leaveId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.qztc.appdemo.model.Leave" >
-    update leave
-    set student_sno = #{studentSno,jdbcType=INTEGER},
-      leave_reason = #{leaveReason,jdbcType=VARCHAR},
-      start_time = #{startTime,jdbcType=DATE},
-      end_time = #{endTime,jdbcType=DATE},
-      coundelor_id = #{coundelorId,jdbcType=INTEGER},
-      is_read = #{isRead,jdbcType=INTEGER}
-    where leave_id = #{leaveId,jdbcType=INTEGER}
-  </update>
+
 </mapper>

@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 /**
- * @author wangxl
+ * @author xiayj
  * @ClassName CounselorService
  * @Description
  * @date 2019/8/21 0:02
@@ -26,7 +26,7 @@ public class CounselorService {
   private CounselorMapper counselorMapper;
 
   /**
-   *
+   * 根据辅导员的ID删除辅导员信息
    * @param counselorId
    * @return
    */
@@ -35,7 +35,7 @@ public class CounselorService {
   }
 
   /**
-   *
+   * 添加辅导员信息
    * @param record
    * @return
    */
@@ -44,7 +44,7 @@ public class CounselorService {
   }
 
   /**
-   *
+   * 根据ID查询辅导员信息
    * @param counselorId
    * @return
    */

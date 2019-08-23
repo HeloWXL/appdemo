@@ -5,26 +5,25 @@ import com.qztc.appdemo.model.Leave;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 请假Mapper
- * @author xiayj
+ *
+ * @author
  * @since
  */
 @Mapper
 public interface LeaveMapper extends BaseMapper<Leave> {
 
     /**
-     * 添加请假条
+     * 添加
      * @param record
-     * @return int
+     * @return
      */
     int insertSelective(Leave record);
 
     /**
-     * 根据请假条ID查询请假条信息
+     * 根据ID查询请假信息
      * @param leaveId
-     * @return Leave
+     * @return
      */
     Leave selectByPrimaryKey(Integer leaveId);
-
 
 }

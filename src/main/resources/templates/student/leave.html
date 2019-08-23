@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/css/mui.min.css" rel="stylesheet" />
+		<link href="/css/mui.picker.min.css" rel="stylesheet" />
+		<style>
+			body{
+				font-size: 12px;
+			}
+			.mui-title {
+				color: #FFFFFF;
+			}
+			#content{
+				width: 100%;
+				height: 100%;
+			}
+			.location{
+				margin-left: 35px;
+				margin-top: 10px;
+				margin-bottom: 30px;
+				background-color: #FFFFFF;
+				width: 300px;
+				height: 550px;
+			}
+			input{
+				font-size: 12px;
+				color: #555555;
+			}
+			textarea{
+				font-size: 12px;
+			}
+			h4{
+				font-weight: 100;
+				text-align: center;
+			}
+			#qingjia{
+				margin-top: 10px;
+			}
+			.btn{
+				text-align: center;
+			}
+			button{
+				margin-top: 20px;
+				margin-left: 20px;
+				margin-right: 20px;
+			}
+			.mui-table-view{
+				height: 550px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav mui-badge-primary">
+			<span class="mui-icon mui-icon-back" onclick="javascript:history.back(-1);"></span>
+			<h1 class="mui-title">请假</h1>
+		</header>
+		<div class="mui-content">
+			<h4>请假单</h4>
+			<div id="cotent">
+				<div class="location">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<div class="mui-input-row">
+								<label>姓名：</label>
+								<input type="text" class="mui-input-clear" disabled="true" id="studentname">
+							</div>
+							<div class="mui-input-row">
+								<label>学号：</label>
+								<input type="text" class="mui-input-clear"  disabled="true" id="studentsno">
+							</div>
+							<div class="mui-input-row">
+								<label>开始时间：</label>
+								<input type="text" class="mui-input-clear" placeholder="请选择开始时间" id="start">
+							</div>
+							<div class="mui-input-row">
+								<label>结束时间：</label>
+								<input type="text" class="mui-input-clear" placeholder="请选择结束时间" id="end">
+							</div>
+							<div class="mui-input-row">
+								<label>事由：</label>
+								<textarea id="leaveReason" rows="8" placeholder="  请写明请假缘由" style="width: 95%; margin-left: 8px;border: 1px solid #BBBBBB;"></textarea>
+							</div>
+							<div class="btn">
+								<button type="button" class="mui-btn mui-btn-primary" id="submit">提交</button>
+								<button type="button" class="mui-btn" id="reset">重置</button>
+							</div>
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="/js/mui.min.js"></script>
+	<script src="/js/jquery-2.1.4.js"></script>
+	<script src="/js/mui.picker.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+
+      $.ajax({
+        url:'/studentApi/getStudentSession',
+        data:{studentBean:'studentsession'},
+        dataType:'json',
+        type:'post',
+        success:function (data) {
+          if (data.body == null) {
+            mui.alert('用户未登录', function() {
+              location.href = '/toLogin';
+            });
+          }else{
+            $('#studentname').val(data.body.studentName);
+            $('#studentsno').val(data.body.studentSno);
+          }
+        }
+			});
+
+			// 开始选择
+			$('#start').click(function() {
+				var $dom = $('#start');
+				dateSelect($dom);
+			});
+
+			$('#end').click(function(){
+				var dom1 = $('#end');
+				dateSelect(dom1);
+			});
+
+			$('#submit').click(function() {
+        $('#studentsno').removeAttr("disabled");
+
+        var leave={
+          studentSno : $("#studentsno").val(),
+          leaveReason : $("#leaveReason").val(),
+          startTime : $("#start").val(),
+          endTime : $("#end").val(),
+          coundelorId:1
+        };
+
+        console.log(leave)
+
+				$.ajax({
+          url:'/leaveApi/insertSelective',
+          data:JSON.stringify(leave),
+          dataType:'json',
+          type:'post',
+          contentType: 'application/json; charset=utf-8',
+          success:function (data){
+            console.log(data.body)
+						if(data.body==1){
+						  mui.alert('提交成功',function() {
+								history.back(-1);
+              });
+						}else{
+              mui.alert('提交失败',function() {
+                reset();
+              });
+						}
+					},error:function(e) {
+						mui.alert('服务器内部错误');
+          }
+				});
+      });
+
+      $('#submit').click(function() {
+        reset();
+      });
+
+
+		});
+
+		//重置
+		function reset() {
+      $('#leaveReason').val('');
+      $('#start').val('');
+      $('#end').val('');
+    }
+
+
+    // 时间选择函数
+    function dateSelect(dom) {
+      var $a = dom;
+      var Date = new mui.DtPicker({
+        type: 'date'
+      });
+      Date.show(function(item) {
+        //这里你可以用console 看看回调函数中的item的值
+        var endDate = item.y.text + '-' + item.m.text + '-' + item.d.text;
+        $a.val(endDate);
+      });
+    }
+
+	</script>
+</html>

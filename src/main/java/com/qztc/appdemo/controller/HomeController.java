@@ -1,37 +1,43 @@
 package com.qztc.appdemo.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author wangxl
+ * @author xiayj
  * @ClassName HomeController
  * @Description
  * @date 2019/8/21 16:41
  */
+@Api(tags = "界面跳转接口")
 @Controller
 public class HomeController {
 
+  @ApiOperation(value = "跳转到学生登录界面")
   @GetMapping("/toLogin")
   public String toLogin(){
     return "/student/login.html";
   }
 
+  @ApiOperation(value = "跳转到学生首页界面")
   @GetMapping("/index")
   public String toIndex(){
     return "/student/index.html";
   }
 
-
-
+  @ApiOperation(value = "跳转到学生信息界面")
   @GetMapping("/person")
   public String toPerson(){
     return "/student/person.html";
   }
 
-
+  @ApiOperation(value = "跳转到学生请假界面")
   @GetMapping("/leave")
   public String toLeave(){
-    return "/student/askForLeave.html.html";
+    return "/student/leave.html";
   }
 }

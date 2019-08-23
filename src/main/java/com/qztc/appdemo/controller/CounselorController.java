@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * @author wangxl
+ * @author xiayj
  * @ClassName CounselorController
  * @Description
  * @date 2019/8/21 0:03

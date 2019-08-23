@@ -1,8 +1,18 @@
 package com.qztc.appdemo.model;
 
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.enums.IdType;
+import lombok.Data;
+
 import java.util.Date;
 
+/**
+ * @author xiayj
+ * @since
+ */
+@Data
 public class Sign {
+    @TableId(value = "sign_id",type = IdType.AUTO)
     private Integer signId;
 
     private String signLocation;
@@ -13,43 +23,4 @@ public class Sign {
 
     private Integer courseId;
 
-    public Integer getSignId() {
-        return signId;
-    }
-
-    public void setSignId(Integer signId) {
-        this.signId = signId;
-    }
-
-    public String getSignLocation() {
-        return signLocation;
-    }
-
-    public void setSignLocation(String signLocation) {
-        this.signLocation = signLocation == null ? null : signLocation.trim();
-    }
-
-    public Date getSignTime() {
-        return signTime;
-    }
-
-    public void setSignTime(Date signTime) {
-        this.signTime = signTime;
-    }
-
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
-
-    public Integer getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
-    }
 }

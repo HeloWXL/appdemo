@@ -19,13 +19,11 @@ import java.util.Map;
  */
 @Service
 public class CourseService {
-
-
   @Resource
   private CourseMapper courseMapper;
 
   /**
-   *
+   * 根据ID删除课程信息
    * @param courseId
    * @return int
    */
@@ -34,7 +32,7 @@ public class CourseService {
   }
 
   /**
-   *
+   * 添加课程信息
    * @param record
    * @return int
    */
@@ -43,7 +41,7 @@ public class CourseService {
   }
 
   /**
-   *
+   * 根据ID查询课程信息
    * @param courseId
    * @return Course
    */
@@ -52,7 +50,7 @@ public class CourseService {
   }
 
   /**
-   *
+   * 更新课程信息
    * @param record
    * @return int
    */
