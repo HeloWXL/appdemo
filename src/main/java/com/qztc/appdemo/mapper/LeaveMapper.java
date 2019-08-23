@@ -2,12 +2,14 @@ package com.qztc.appdemo.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.qztc.appdemo.model.Leave;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 请假Mapper
  * @author xiayj
  * @since
  */
+@Mapper
 public interface LeaveMapper extends BaseMapper<Leave> {
 
     /**

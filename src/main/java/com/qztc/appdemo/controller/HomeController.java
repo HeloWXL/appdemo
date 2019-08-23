@@ -17,8 +17,21 @@ public class HomeController {
     return "/student/login.html";
   }
 
-  @GetMapping("/toIndex")
+  @GetMapping("/index")
   public String toIndex(){
     return "/student/index.html";
+  }
+
+
+
+  @GetMapping("/person")
+  public String toPerson(){
+    return "/student/person.html";
+  }
+
+
+  @GetMapping("/leave")
+  public String toLeave(){
+    return "/student/askForLeave.html.html";
   }
 }
