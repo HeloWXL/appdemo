@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/css/mui.min.css" rel="stylesheet" />
+		<link href="/css/mui.picker.min.css" rel="stylesheet" />
+		<style>
+			body{
+				font-size: 12px;
+			}
+			.mui-title {
+				color: #FFFFFF;
+			}
+			#content{
+				width: 100%;
+				height: 100%;
+			}
+			.location{
+				margin-left: 35px;
+				margin-top: 10px;
+				margin-bottom: 30px;
+				background-color: #FFFFFF;
+				width: 300px;
+				height: 550px;
+			}
+			input{
+				font-size: 12px;
+				color: #555555;
+			}
+			textarea{
+				font-size: 12px;
+			}
+			h4{
+				font-weight: 150;
+				text-align: center;
+			}
+			#qingjia{
+				margin-top: 10px;
+			}
+			.btn{
+				text-align: center;
+			}
+			button{
+				margin-top: 20px;
+				margin-left: 20px;
+				margin-right: 20px;
+			}
+			.mui-table-view{
+				height: 550px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav mui-badge-primary">
+			<span class="mui-icon mui-icon-back"></span>
+			<h1 class="mui-title">请假</h1>
+		</header>
+		<div class="mui-content">
+			<h4>请假单</h4>
+			<div id="cotent">
+				<div class="location">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<div class="mui-input-row">
+								<label>姓名：</label>
+								<input type="text" class="mui-input-clear" value="wangxianlin" disabled="true">
+							</div>
+							<div class="mui-input-row">
+								<label>学号：</label>
+								<input type="text" class="mui-input-clear" value="151303011" disabled="true">
+							</div>
+							<div class="mui-input-row">
+								<label>开始时间：</label>
+								<input type="text" class="mui-input-clear" placeholder="请选择开始时间" id="start">
+							</div>
+							<div class="mui-input-row">
+								<label>结束时间：</label>
+								<input type="text" class="mui-input-clear" placeholder="请选择结束时间" id="end">
+							</div>
+							<div class="mui-input-row">
+								<label>事由：</label>
+								<textarea id="taskDesc" rows="8" placeholder="  请写明请假缘由" style="width: 95%; margin-left: 8px;border: 1px solid #BBBBBB;"></textarea>
+							</div>
+							<div class="btn">
+								<button type="button" class="mui-btn mui-btn-primary">提交</button>
+								<button type="button" class="mui-btn">重置</button>
+							</div>
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="/js/mui.min.js"></script>
+	<script src="/js/jquery-2.1.4.js"></script>
+	<script src="/js/mui.picker.min.js"></script>
+	<script type="text/javascript">
+		mui.init()
+		$(function() {
+			$("#start").click(function() {
+				var $dom = $("#start");
+				dateSelect($dom);
+			})
+			$("#end").click(function() {
+				var dom1 = $("#end");
+				dateSelect(dom1)
+			})
+			// 时间选择
+			function dateSelect(dom) {
+				var $a = dom
+				var Date = new mui.DtPicker({
+					type: 'date'
+				});
+				Date.show(function(item) {
+					//这里你可以用console 看看回调函数中的item的值 
+					var endDate = item.y.text + '-' + item.m.text + '-' + item.d.text;
+					//这两种都是可以的
+					console.log(endDate)
+					$a.val(endDate);
+				})
+			}
+		})
+	</script>
+</html>
