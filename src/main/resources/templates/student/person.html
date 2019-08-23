@@ -40,7 +40,7 @@
 				<li class="mui-table-view-cell">
 					<div class="mui-input-row">
 						<label>头像</label>
-						<img src="/images/dogs.png" name="userPic">
+						<img src="" name="userPic">
 					</div>
 					<div class="mui-input-row">
 						<label>姓名</label>
@@ -84,7 +84,7 @@
 		</div>
 
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item ">
+			<a class="mui-tab-item" id="home">
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
@@ -92,7 +92,7 @@
 				<span class="mui-icon mui-icon-chatbubble"></span>
 				<span class="mui-tab-label">消息</span>
 			</a>
-			<a class="mui-tab-item">
+			<a class="mui-tab-item" id="myinfo">
 				<span class="mui-icon mui-icon-person mui-active"></span>
 				<span class="mui-tab-label">我的信息</span>
 			</a>
@@ -102,6 +102,16 @@
 
 		<script type="text/javascript">
 			$(function() {
+
+        $("#myinfo").click(function() {
+          location.href='/student/person.html';
+        });
+        $("#home").click(function() {
+          location.href='/student/index.html';
+        });
+
+
+
         // 获取session的值
         $.ajax({
           url:'/studentApi/getStudentSession',
