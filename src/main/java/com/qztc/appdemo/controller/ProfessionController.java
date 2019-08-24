@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author xiayj
@@ -53,6 +54,14 @@ public class ProfessionController {
   public DataResult<Integer> updateProfession(@RequestBody Profession profession){
     DataResult<Integer> result = new DataResult<>();
     result.setBody(professionService.updateByPrimaryKeySelective(profession));
+    return result;
+  }
+
+  @ApiOperation(value = "查询专业信息-分页显示")
+  @GetMapping("/selectProfessionByPage")
+  public DataResult<Map<String,Object>> selectProfessionByPage(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSieze") Integer pageSieze){
+    DataResult<Map<String,Object>> result = new DataResult<>();
+    result.setBody(professionService.getProfessionByPage(pageNo,pageSieze));
     return result;
   }
 }

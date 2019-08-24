@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @author xiayj
@@ -91,6 +92,14 @@ public class TeacherController {
   public DataResult<Integer> updateStudent(@RequestBody Teacher teacher) {
     DataResult<Integer> result = new DataResult<>();
     result.setBody(teacherService.updateByPrimaryKeySelective(teacher));
+    return result;
+  }
+
+  @ApiOperation(value = "查询教师信息-分页显示")
+  @GetMapping("/selectTeacherByPage")
+  public DataResult<Map<String,Object>> selectTeacherByPage(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSieze") Integer pageSieze){
+    DataResult<Map<String,Object>> result = new DataResult<>();
+    result.setBody(teacherService.getTeacherByPage(pageNo,pageSieze));
     return result;
   }
 

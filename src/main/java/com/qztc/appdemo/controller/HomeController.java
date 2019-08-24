@@ -40,4 +40,16 @@ public class HomeController {
   public String toLeave(){
     return "/student/leave.html";
   }
+
+  @ApiOperation(value = "跳转到请假详情界面")
+  @GetMapping("/leaveDetail")
+  public String toLeaveDetail(){
+    return "/student/leavedetail.html";
+  }
+
+  @ApiOperation(value = "跳转到我的请假记录界面")
+  @GetMapping("/leaveList")
+  public String toLeaveList(){
+    return "/student/leavelist.html";
+  }
 }

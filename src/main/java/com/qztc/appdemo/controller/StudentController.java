@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.ResultSet;
+import java.util.Map;
 
 /**
- * @author wangxl
+ * @author xiayj
  * @ClassName StudentController
  * @Description
  * @date 2019/8/21 0:08
@@ -82,18 +83,26 @@ public class StudentController {
     return result;
   }
 
-  @ApiOperation(value="获取学生的session对象")
+  @ApiOperation(value = "获取学生的session对象")
   @PostMapping("getStudentSession")
   public DataResult<Student> getStudentSession(HttpServletRequest request,@RequestParam("studentBean") String studentBean){
     DataResult<Student> result = new DataResult<>();
     Student student = (Student) request.getSession().getAttribute(studentBean);
-    if(student==null){
+    if (student == null) {
       result.setBody(null);
       return result;
-    }else{
+    } else {
       result.setBody(student);
       return result;
     }
+  }
+
+  @ApiOperation(value = "查询学生信息-分页显示")
+  @GetMapping("/selectStudentByPage")
+  public DataResult<Map<String,Object>> selectStudentByPage(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSieze") Integer pageSieze){
+    DataResult<Map<String,Object>> result = new DataResult<>();
+    result.setBody(studentService.getStudentByPage(pageNo,pageSieze));
+    return result;
   }
 
 

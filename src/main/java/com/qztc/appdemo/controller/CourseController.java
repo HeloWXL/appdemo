@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author xiayj
@@ -54,4 +55,13 @@ public class CourseController {
     result.setBody(courseService.updateByPrimaryKeySelective(course));
     return result;
   }
+
+  @ApiOperation(value = "查询课程信息")
+  @GetMapping("/selectCourseByPage")
+  public DataResult<Map<String,Object>> selectCourseByPage(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSieze") Integer pageSieze){
+    DataResult<Map<String,Object>> result = new DataResult<>();
+    result.setBody(courseService.getCourseByPage(pageNo,pageSieze));
+    return result;
+  }
+
 }

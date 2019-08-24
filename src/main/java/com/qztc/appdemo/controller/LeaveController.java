@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author wangxl
@@ -38,6 +39,15 @@ public class LeaveController {
     DataResult<Leave> result = new DataResult<>();
     Leave leave = leaveService.selectByPrimaryKey(leaveId);
     result.setBody(leave);
+    return result;
+  }
+
+
+  @ApiOperation(value = "查询请假信息")
+  @GetMapping("/selectLeaveByPage")
+  public DataResult<Map<String,Object>> selectLeaveByPage(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSieze") Integer pageSieze){
+    DataResult<Map<String,Object>> result = new DataResult<>();
+    result.setBody(leaveService.getLeaveByPage(pageNo,pageSieze));
     return result;
   }
 
