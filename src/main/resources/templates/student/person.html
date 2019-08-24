@@ -27,12 +27,21 @@
 				font-size: 14px;
 				color: #555555;
 			}
+			.mui-btn-outlined{
+				color: #FFFFFF;
+				border: none;
+				outline: none;
+				position: absolute;
+				top: 10px;
+				left: 10px;
+			}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav mui-badge-primary">
 			<h1 class="mui-title">我的信息</h1>
+			<button type="button" class="mui-btn mui-btn-outlined">默认</button>
 		</header>
 
 		<div class="mui-content">
@@ -103,10 +112,10 @@
 		<script type="text/javascript">
 			$(function() {
 
-        $("#myinfo").click(function() {
+        $('#myinfo').click(function() {
           location.href='/student/person.html';
         });
-        $("#home").click(function() {
+        $('#home').click(function() {
           location.href='/student/index.html';
         });
 
@@ -120,20 +129,18 @@
 					type:'post',
           success:function (data) {
             if(data.body==null){
-              mui.alert('用户未登录',function() {
-								location.href="/toLogin";
-              });
+								location.href='/toLogin';
 						}
-            $("img[name='userPic']").attr('src',data.body.studentPic);
-            $("input[name='username']").val(data.body.studentName);
-            $("input[name='sno']").val(data.body.studentSno);
-            $("input[name='age']").val(data.body.studentAge);
-            $("input[name='sex']").val(data.body.studentSex);
-            $("input[name='qq']").val(data.body.studentQq);
-            $("input[name='email']").val(data.body.studentEmail);
-            $("input[name='profession']").val(data.body.profession.professionName);
-            $("input[name='apartment']").val(data.body.profession.apartment);
-            $("input[name='school']").val(data.body.profession.school);
+            $('img[name=\'userPic\']').attr('src',data.body.studentPic);
+            $('input[name=\'username\']').val(data.body.studentName);
+            $('input[name=\'sno\']').val(data.body.studentSno);
+            $('input[name=\'age\']').val(data.body.studentAge);
+            $('input[name=\'sex\']').val(data.body.studentSex);
+            $('input[name=\'qq\']').val(data.body.studentQq);
+            $('input[name=\'email\']').val(data.body.studentEmail);
+            $('input[name=\'profession\']').val(data.body.profession.professionName);
+            $('input[name=\'apartment\']').val(data.body.profession.apartment);
+            $('input[name=\'school\']').val(data.body.profession.school);
           }
         });
       });

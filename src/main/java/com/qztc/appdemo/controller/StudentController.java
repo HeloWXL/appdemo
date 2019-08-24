@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.Map;
 
@@ -106,7 +108,17 @@ public class StudentController {
   }
 
 
+  @ApiOperation(value = "清除学生的session对象")
+  @GetMapping("/removeStudentSession")
+  public void removeStudentSession(HttpServletRequest request, HttpServletResponse response){
+    request.getSession().removeAttribute("studentsession");
+    try {
+      response.sendRedirect("/toLogin");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
+  }
 
 
 

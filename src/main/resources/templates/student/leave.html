@@ -123,20 +123,24 @@
         }
 			});
 
-			// 开始选择
+			// 开始日期选择
 			$('#start').click(function() {
+        document.activeElement.blur();
 				var $dom = $('#start');
 				dateSelect($dom);
 			});
-
+			//结束日期选择
 			$('#end').click(function(){
+        document.activeElement.blur();
 				var dom1 = $('#end');
 				dateSelect(dom1);
 			});
 
+			// 提交请假单
 			$('#submit').click(function() {
         $('#studentsno').removeAttr("disabled");
 
+        // 将数据封装成对象
         var leave={
           studentSno : $("#studentsno").val(),
           leaveReason : $("#leaveReason").val(),
@@ -168,7 +172,8 @@
 				});
       });
 
-      $('#submit').click(function() {
+
+      $("#reset").click(function() {
         reset();
       });
 
@@ -180,7 +185,7 @@
       $('#leaveReason').val('');
       $('#start').val('');
       $('#end').val('');
-      $('#leaveTtle').val('');
+      $('#leaveTitle').val('');
 
     }
 
