@@ -45,9 +45,10 @@ public class LeaveController {
 
   @ApiOperation(value = "查询请假信息")
   @GetMapping("/selectLeaveByPage")
-  public DataResult<Map<String,Object>> selectLeaveByPage(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSieze") Integer pageSieze){
+  public DataResult<Map<String,Object>> selectLeaveByPage(@RequestParam("pageNo") Integer pageNo,
+                                                          @RequestParam("pageSize") Integer pageSieze, @RequestParam("studentSno") Integer studentSno){
     DataResult<Map<String,Object>> result = new DataResult<>();
-    result.setBody(leaveService.getLeaveByPage(pageNo,pageSieze));
+    result.setBody(leaveService.getLeaveByPage(pageNo,pageSieze,studentSno));
     return result;
   }
 

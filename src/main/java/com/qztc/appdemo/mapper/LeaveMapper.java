@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.qztc.appdemo.model.Leave;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author
@@ -25,5 +28,14 @@ public interface LeaveMapper extends BaseMapper<Leave> {
      * @return
      */
     Leave selectByPrimaryKey(Integer leaveId);
+
+
+
+    /**
+     *
+     * @param map
+     * @return
+     */
+    List<Leave> selectLeaveAndStudentByPage(Map<String ,Object> map);
 
 }

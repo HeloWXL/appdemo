@@ -1,7 +1,9 @@
 package com.qztc.appdemo.model;
 
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,6 +13,7 @@ import java.util.Date;
  * @since
  */
 @Data
+@TableName(value = "leaves")
 public class Leave {
     @TableId(value = "leave_id",type = IdType.AUTO)
     private Integer leaveId;
@@ -20,12 +23,14 @@ public class Leave {
     private String leaveTitle;
 
     private String leaveReason;
-
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Date startTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Date endTime;
 
     private Integer coundelorId;
 
     private Integer isRead;
+
+    private Student student;
 }

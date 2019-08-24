@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.qztc.appdemo.model.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 教师Mapper
  * @author xiayj
@@ -45,4 +48,12 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
      * @return
      */
     Teacher selectByTno(String tno);
+
+
+    /**
+     * 教师分页
+     * @return List<Teacher>
+     */
+    List<Teacher> selectByPage(Map<String,Object> map);
+
 }

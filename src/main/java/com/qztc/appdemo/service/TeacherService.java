@@ -6,6 +6,8 @@ import com.qztc.appdemo.mapper.TeacherMapper;
 import com.qztc.appdemo.model.Course;
 import com.qztc.appdemo.model.Student;
 import com.qztc.appdemo.model.Teacher;
+import com.qztc.appdemo.vo.TeacherVo;
+import org.omg.CORBA.INTERNAL;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -63,21 +65,29 @@ public class TeacherService {
     return teacherMapper.updateByPrimaryKeySelective(record);
   }
 
+
+
+
+
   /**
    * 获取教师列表分页
    * @param pageNo
    * @param pageSize
    * @return
    */
-  public Map<String, Object> getTeacherByPage(Integer pageNo, Integer pageSize) {
-    EntityWrapper entityWrapper = new EntityWrapper();
-    List<Teacher> teachers = teacherMapper.selectPage(new Page<Course>(pageNo,pageSize),entityWrapper);
-    int count = teacherMapper.selectCount(entityWrapper);
-    Map<String,Object> map = new HashMap<>();
-    map.put("list",teachers);
-    map.put("count",count);
-    return map;
-  }
+    public Map<String, Object> getTeacherByPage(Integer pageNo, Integer pageSize){
+      Map<String, Object> data = new HashMap();
+      Map<String, Object> map = new HashMap();
+
+      EntityWrapper entityWrapper = new EntityWrapper();
+      data.put("pageNo", (pageNo - 1) * pageSize);
+      data.put("pageSize", pageSize);
+      List<Teacher> teacherList = teacherMapper.selectByPage(data);
+      map.put("list",teacherList);
+      int count = teacherMapper.selectCount(entityWrapper);
+      map.put("count",count);
+      return map;
+    }
 
   /**
    * 根据学号查询辅导员信息 用于登录判断密码是否相一致

@@ -51,14 +51,20 @@ public class LeaveService {
    * @param pageSize
    * @return
    */
-  public Map<String, Object> getLeaveByPage(Integer pageNo, Integer pageSize) {
+  public Map<String, Object> getLeaveByPage(Integer pageNo, Integer pageSize,Integer studentSno) {
     EntityWrapper entityWrapper = new EntityWrapper();
-    List<Leave> leaveList = leaveMapper.selectPage(new Page<Leave>(pageNo,pageSize),entityWrapper);
+    Map<String ,Object> map = new HashMap<>();
+    Map<String ,Object> data = new HashMap<>();
+    map.put("pageNo",pageNo);
+    map.put("pageSize",pageSize);
+    map.put("studentSno",studentSno);
+    List<Leave> leaveList = leaveMapper.selectLeaveAndStudentByPage(map);
+    data.put("list",leaveList);
+
+    entityWrapper.eq("student_sno",studentSno);
     int count = leaveMapper.selectCount(entityWrapper);
-    Map<String,Object> map = new HashMap<>();
-    map.put("list",leaveList);
-    map.put("count",count);
-    return map;
+    data.put("count",count);
+    return data;
   }
 
 

@@ -44,63 +44,71 @@
 		</header>
 
 		<div class="mui-content">
-			<ul class="mui-table-view" id="commentDetail" name='${appCommentDto.commentId}'>
-				<li class="mui-table-view-cell">
-					<span class="mui-badge mui-badge-success" id="success">已批阅</span>
-					<a>
-						<h4>感冒</h4>
-						<p>
-							请假课程：<span>高等数学</span>
-						</p>
-						<p>开始时间：<span>2019-8-12</span>&nbsp;&nbsp;&nbsp;结束时间：<span>2019-8-12</span></p>
+			<ul class="mui-table-view" id="leaveList">
 
-					</a>
-				</li>
 
-				<li class="mui-table-view-cell">
-					<span class="mui-badge mui-badge-danger" id="fail">未批阅</span>
-					<a>
-						<h4>感冒</h4>
-						<p>
-							请假课程：<span>高等数学</span>
-						</p>
-						<p>开始时间：<span>2019-8-12</span>&nbsp;&nbsp;&nbsp;结束时间：<span>2019-8-12</span></p>
-
-					</a>
-				</li>
-
-				<li class="mui-table-view-cell">
-					<span class="mui-badge mui-badge-success" id="success">已批阅</span>
-					<a>
-						<h4>感冒</h4>
-						<p>
-							请假课程：<span>高等数学</span>
-						</p>
-						<p>开始时间：<span>2019-8-12</span>&nbsp;&nbsp;&nbsp;结束时间：<span>2019-8-12</span></p>
-
-					</a>
-				</li>
-				<li class="mui-table-view-cell">
-					<span class="mui-badge mui-badge-danger" id="fail">未批阅</span>
-					<a>
-						<h4>感冒</h4>
-						<p>
-							请假课程：<span>高等数学</span>
-						</p>
-						<p>开始时间：<span>2019-8-12</span>&nbsp;&nbsp;&nbsp;结束时间：<span>2019-8-12</span></p>
-					</a>
-				</li>
 			</ul>
 			
 			
 			<div id="loading">
-				<button type="button" class="mui-btn mui-btn-outlined">加载</button>
+				<button type="button" class="mui-btn mui-btn-outlined" style="display: none">加载</button>
 			</div>
 		</div>
 		<script src="js/mui.min.js"></script>
 		<script src="/js/jquery-2.1.4.js"></script>
 		<script type="text/javascript">
-			mui.init()
+
+			$(function() {
+        var pageNo = 0 ;
+        var studentSno ='';
+
+
+        $.ajax({
+          url: '/studentApi/getStudentSession',
+          data: {studentBean: 'studentsession'},
+          dataType: 'json',
+          type: 'post',
+					async:false,
+          success: function(data) {
+            studentSno = data.body.studentSno;
+            return studentSno;
+          }
+        })
+
+			  $.ajax({
+					url:'/leaveApi/selectLeaveByPage/',
+					dataType:'json',
+					type:'get',
+					data:{pageNo:pageNo,pageSize:10,studentSno:studentSno},
+          contentType: 'application/json; charset=utf-8',
+          async:false,
+					success:function(data) {
+						for(var i = 0 ;i<data.body.list.length;i++){
+              var $node = $('<li class="mui-table-view-cell">\n' +
+                  '<span class="mui-badge mui-badge-success" id="success">已批阅</span>\n' +
+                  '<a>\n' +
+                  '<h4>'+data.body.list[i].leaveTitle+'</h4>\n' +
+                  '<p>\n' +
+                  '请假课程：<span>高等数学</span>\n' +
+                  '</p>\n' +
+                  '<p>开始时间：<span>'+GMTToStr(data.body.list[i].startTime)+'</span>&nbsp;&nbsp;&nbsp;结束时间：<span>'+GMTToStr(data.body.list[i].endTime)+'</span></p>\n' +
+                  '\n' +
+                  '</a>\n' +
+                  '</li>');
+              $("#leaveList").append($node);
+						}
+          }
+				});
+      });
+
+
+      function GMTToStr(time){
+        var date = new Date(time)
+        var Str=date.getFullYear() + '-' +
+            (date.getMonth()+1) + '-' +
+            date.getDate()
+        return Str
+      }
 		</script>
 	</body>
 
