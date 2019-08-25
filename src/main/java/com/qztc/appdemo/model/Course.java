@@ -28,6 +28,7 @@ public class Course {
     @TableField("create_time")
     private Date ceateTime;
 
+    @TableField(exist = false)
     private Teacher teacher;
 
 }

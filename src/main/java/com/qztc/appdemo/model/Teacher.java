@@ -1,5 +1,6 @@
 package com.qztc.appdemo.model;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
@@ -31,6 +32,7 @@ public class Teacher {
 
     private Integer professionId;
 
+    @TableField(exist = false)
     private Profession profession;
 
 }

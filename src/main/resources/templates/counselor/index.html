@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>后台管理</title>
+		<link href="/bootstrap-3.3.7/dist/css/bootstrap.css" rel="stylesheet" />
+		<link href="/layui/css/layui.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="containers">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<ul class="layui-nav layui-bg-blue">
+						<li class="layui-nav-item"><a href="">艳蓝导航</a></li>
+						<li class="layui-nav-item"><a href="">产品</a></li>
+						<li class="layui-nav-item"><a href="">大数据</a></li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">解决方案</a>
+							<dl class="layui-nav-child">
+								<dd><a href="">移动模块</a></dd>
+								<dd><a href="">后台模版</a></dd>
+								<dd><a href="">电商平台</a></dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item"><a href="">社区</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-1 column">
+					<div class="panel-group" id="panel-570353">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<a class="panel-title collapsed success" data-toggle="collapse" id="student">
+									学生管理</a>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<a class="panel-title collapsed" data-toggle="collapse" id="teacher">
+									教师管理</a>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<a class="panel-title collapsed" data-toggle="collapse" id="leave">
+									请假管理</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-10 column">
+					<iframe align="center" width="100%" height="600px" src="/toStudentTable" frameborder="no" border="0" marginwidth="0"
+					 marginheight="20px" scrolling="no"></iframe>
+				</div>
+			</div>
+
+
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="alert alert-success alert-dismissable" id="success" style="display: none;">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h4>
+							注意!
+						</h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert
+							link</a>
+					</div>
+
+					<div class="alert alert-danger alert-dismissable" id="fail" style="display: none;">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h4>
+							注意!
+						</h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert
+							link</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script src="/js/jquery-2.1.4.js" type="application/javascript"></script>
+	<script src="/bootstrap-3.3.7/dist/js/bootstrap.js" type="application/javascript"></script>
+	<script src="/layui/layui.js" type="application/javascript"></script>
+	<script>
+		$(function() {
+
+			$("#student").click(function() {
+				$("iframe").attr("src", "/toStudentTable")
+			})
+			$("#teacher").click(function() {
+				$("iframe").attr("src", "/toTeacherTable")
+			})
+			$("#leave").click(function() {
+				$("iframe").attr("src", "toLeaveTable")
+			})
+
+
+			$("#s").click(function() {
+				$("#success").fadeIn("slow");
+				$("#fail").fadeOut("slow");
+			})
+
+			$("#f").click(function() {
+				$("#fail").fadeIn("slow");
+				$("#success").fadeOut("slow");
+			})
+
+
+
+
+
+
+		})
+
+
+		layui.use('element', function() {
+			var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+			//监听导航点击
+			element.on('nav(demo)', function(elem) {
+				//console.log(elem)
+				layer.msg(elem.text());
+			});
+		});
+	</script>
+</html>

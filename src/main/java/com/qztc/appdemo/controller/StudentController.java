@@ -101,9 +101,9 @@ public class StudentController {
 
   @ApiOperation(value = "查询学生信息-分页显示")
   @GetMapping("/selectStudentByPage")
-  public DataResult<Map<String,Object>> selectStudentByPage(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSieze") Integer pageSieze){
+  public DataResult<Map<String,Object>> selectStudentByPage(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize){
     DataResult<Map<String,Object>> result = new DataResult<>();
-    result.setBody(studentService.getStudentByPage(pageNo,pageSieze));
+    result.setBody(studentService.getStudentByPage(pageNo,pageSize));
     return result;
   }
 

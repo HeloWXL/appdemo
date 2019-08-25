@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @Api(tags = "教师接口")
 @RestController
-@RequestMapping("/teacher")
+@RequestMapping("/teacherApi")
 public class TeacherController {
 
   @Resource
@@ -97,9 +97,9 @@ public class TeacherController {
 
   @ApiOperation(value = "查询教师信息-分页显示")
   @GetMapping("/selectTeacherByPage")
-  public DataResult<Map<String,Object>> selectTeacherByPage(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSieze") Integer pageSieze){
+  public DataResult<Map<String,Object>> selectTeacherByPage(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize){
     DataResult<Map<String,Object>> result = new DataResult<>();
-    result.setBody(teacherService.getTeacherByPage(pageNo,pageSieze));
+    result.setBody(teacherService.getTeacherByPage(pageNo,pageSize));
     return result;
   }
 

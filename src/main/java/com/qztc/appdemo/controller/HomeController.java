@@ -55,4 +55,29 @@ public class HomeController {
   public String toLeaveList(){
     return "/student/leavelist.html";
   }
+
+
+  @ApiOperation(value = "跳转到辅导员首页界面")
+  @GetMapping("/toCounselorIndex")
+  public String toCounseIndex(){
+    return "/counselor/index.html";
+  }
+
+  @ApiOperation(value = "跳转到学生列表界面")
+  @GetMapping("/toStudentTable")
+  public String toStudentTble(){
+    return "/counselor/studentTable.html";
+  }
+
+  @ApiOperation(value = "跳转到教师列表界面")
+  @GetMapping("/toTeacherTable")
+  public String toTeacherTable(){
+    return "/counselor/teacherTable.html";
+  }
+
+  @ApiOperation(value = "跳转到请假列表界面")
+  @GetMapping("/toLeaveTable")
+  public String toLeaveTable(){
+    return "/counselor/leaveTable.html";
+  }
 }

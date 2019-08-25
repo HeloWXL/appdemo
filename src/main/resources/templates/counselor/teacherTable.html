@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>教师列表</title>
+  <link href="/bootstrap-3.3.7/dist/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/css/common.css" rel="stylesheet"/>
+
+</head>
+<body>
+<table class="table table-bordered table-hover table-condensed">
+  <thead>
+  <tr>
+    <th>
+      教师姓名
+    </th>
+    <th>
+      教师工号
+    </th>
+    <th>
+      教师职称
+    </th>
+    <th>
+      年龄
+    </th>
+    <th>
+      性别
+    </th>
+    <th>
+     专业
+    </th>
+    <th>
+      学院
+    </th>
+    <th>
+      学校
+    </th>
+    <th>
+      操作
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+  </tbody>
+</table>
+
+<div id="fenye">
+  <ul class="pagination">
+    <li>
+      <a href="#">上一页</a>
+    </li>
+    <li>
+      <a href="#">下一页</a>
+    </li>
+  </ul>
+</div>
+
+
+</body>
+
+
+<script src="/js/jquery-2.1.4.js" type="application/javascript"></script>
+<script src="/bootstrap-3.3.7/dist/js/bootstrap.js" type="application/javascript"></script>
+<script>
+  $(function() {
+    var a = 0;
+    var pageNo = 1;
+    var pageSize = 10;
+    // 定义表格的样式
+    var classArr = new Array('', 'success', 'error', 'warning', 'info');
+
+    $.ajax({
+      url: '/teacherApi/selectTeacherByPage',
+      data: {pageNo: pageNo, pageSize: pageSize},
+      dataType: 'json',
+      type: 'get',
+      success: function(data) {
+        for (var i = 0; i < data.body.list.length; i++) {
+          var $node = $('<tr class=' + classArr[a++] + '>\n' +
+
+              '<td>\n' +
+              '' + data.body.list[i].teacherName + '\n' +
+              '</td>\n' +
+              '<td>\n' +
+              '' + data.body.list[i].teacherTno + '\n' +
+              '</td>\n' +
+              '<td>\n' +
+              '' + data.body.list[i].teacherJobTitle + '\n' +
+              '</td>\n' +
+              '<td>\n' +
+              '' + data.body.list[i].teacherAge + '\n' +
+              '</td>\n' +
+              '\t\t\t\t\t<td>\n' +
+              '\t\t\t\t\t\t' + data.body.list[i].teacherSex + '\n' +
+              '\t\t\t\t\t</td>\n' +
+              '\t\t\t\t\t<td>\n' +
+              '\t\t\t\t\t\t' + data.body.list[i].profession.professionName + '\n' +
+              '\t\t\t\t\t</td>\n' +
+              '\t\t\t\t\t<td>\n' +
+              '\t\t\t\t\t\t' + data.body.list[i].profession.apartment + '\n' +
+              '\t\t\t\t\t</td>\n' +
+              '\t\t\t\t\t<td>\n' +
+              '\t\t\t\t\t\t' + data.body.list[i].profession.school + '\n' +
+              '\t\t\t\t\t</td>\n' +
+              '\t\t\t\t\t<td>\n' +
+              '\t\t\t\t\t\t\t<button type="button" class="btn btn-success btn-sm">查看</button>\n' +
+              '\t\t\t\t\t\t<button type="button" class="btn btn-info btn-sm">删除</button>\n' +
+              '\t\t\t\t\t\t<button type="button" class="btn btn-warning btn-sm">删除</button>\n' +
+              '\t\t\t\t\t</td>\n' +
+              '\t\t\t\t</tr>');
+
+          $('tbody').append($node);
+          if (a == 5) {
+            a = 0;
+          }
+        }
+      }
+    });
+  });
+</script>
+
+</html>

@@ -44,5 +44,6 @@ public class Leave {
     @TableField("course_id")
     private Integer courseId;
 
+    @TableField(exist = false)
     private Course course;
 }
