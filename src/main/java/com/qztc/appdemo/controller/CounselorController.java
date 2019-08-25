@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Api(tags = "辅导员接口")
 @RestController
-@RequestMapping("/counselor")
+@RequestMapping("/counselorApi")
 public class CounselorController {
 
   private static final Logger LOG = LoggerFactory.getLogger(CounselorController.class);

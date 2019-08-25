@@ -7,12 +7,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Business Login Form Responsive Widget Template :: w3layouts</title>
+<title>Login</title>
  <!-- Meta-Tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <meta name="keywords" content="Business Login Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
-    <script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="Business Login Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+	<link rel="shortcut icon" href="/ico/index.ico"/>
+	<script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
@@ -24,8 +25,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //Meta-Tags -->
 	
 	<!-- css files -->
-	<link href="../../static/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
-	<link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+	<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+	<link href="/css/style.css" rel="stylesheet" type="text/css" media="all"/>
 	<!-- //css files -->
 	
 	<!-- google fonts -->
@@ -46,7 +47,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="w3l_form">
 				<div class="left_grid_info">
 					<h1>THIS IS LOGIN</h1>
-					<img src="../../static/images/user.jpg" alt="" />
+					<img src="/images/user.jpg" alt="" />
 				</div>
 			</div>
 			<div class="w3_info">
@@ -56,14 +57,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<label>教师工号</label>
 					<div class="input-group">
 						<span class="fa fa-envelope" aria-hidden="true"></span>
-						<input type="text" placeholder="请输入你的教师编号" required="">
+						<input type="text" placeholder="请输入你的教师编号" required="" id="cno">
 					</div>
 					<label>密码</label>
 					<div class="input-group">
 						<span class="fa fa-lock" aria-hidden="true"></span>
-						<input type="Password" placeholder="请输入你的密码" required="">
+						<input type="Password" placeholder="请输入你的密码" required="" id="password">
 					</div> 
-						<button class="btn btn-danger btn-block" type="submit">Login</button >
+						<button class="btn btn-danger btn-block" type="submit" id="login">Login</button >
 				</form>
 			</div>
 		</div>
@@ -73,7 +74,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 </body>
 <script src="/js/mui.min.js" type="application/javascript"></script>
+<script src="/js/jquery-2.1.4.js"></script>
 <script>
+  $(function() {
+    $('#login').click(function() {
+      var cno  = $('#cno').val();
+      var password = $('#password').val();
+      $.ajax({
+        url:'/counselorApi/checkLogin',
+        data:{cno:cno,password:password},
+        dataType:'json',
+        type:'post',
+        success:function(data) {
+          if(data.body == true){
+            location.href='/toCounselorIndex';
+          }else{
+           	alert('工号或密码错误');
+          }
+        },eror:function(e) {
+          console.log("Server Inter Error")
+        }
+      });
 
+
+    });
+  });
 </script>
 </html>

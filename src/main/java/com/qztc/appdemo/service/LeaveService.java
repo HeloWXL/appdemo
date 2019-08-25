@@ -46,7 +46,7 @@ public class LeaveService {
 
 
   /**
-   * 获取请假列表分页
+   * 获取请假列表分页 -根据学生的学号查询
    * @param pageNo
    * @param pageSize
    * @return
@@ -62,6 +62,27 @@ public class LeaveService {
     data.put("list",leaveList);
 
     entityWrapper.eq("student_sno",studentSno);
+    int count = leaveMapper.selectCount(entityWrapper);
+    data.put("count",count);
+    return data;
+  }
+
+  /**
+   * 请假列表分页查询
+   * @param pageNo
+   * @param pageSize
+   * @return
+   */
+  public Map<String, Object> selectByPage(Integer pageNo, Integer pageSize) {
+    EntityWrapper entityWrapper = new EntityWrapper();
+    Map<String ,Object> map = new HashMap<>();
+    Map<String ,Object> data = new HashMap<>();
+    map.put("pageNo",(pageNo - 1) * pageSize);
+    map.put("pageSize",pageSize);
+
+    List<Leave> leaveList = leaveMapper.selectByPage(map);
+    data.put("list",leaveList);
+
     int count = leaveMapper.selectCount(entityWrapper);
     data.put("count",count);
     return data;

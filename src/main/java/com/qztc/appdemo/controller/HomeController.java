@@ -57,6 +57,12 @@ public class HomeController {
   }
 
 
+  @ApiOperation(value = "跳转到辅导员登录界面")
+  @GetMapping("/toCounseLogin")
+  public String toCounseLogin(){
+    return "/counselor/login.html";
+  }
+
   @ApiOperation(value = "跳转到辅导员首页界面")
   @GetMapping("/toCounselorIndex")
   public String toCounseIndex(){

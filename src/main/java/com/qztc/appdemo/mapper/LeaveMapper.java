@@ -32,10 +32,18 @@ public interface LeaveMapper extends BaseMapper<Leave> {
 
 
     /**
-     *
+     * 根据学生的学号查询 -分页
      * @param map
      * @return
      */
     List<Leave> selectLeaveAndStudentByPage(Map<String ,Object> map);
+
+
+    /**
+     * 请假列表-分页
+     * @param map
+     * @return
+     */
+    List<Leave> selectByPage(Map<String ,Object> map);
 
 }

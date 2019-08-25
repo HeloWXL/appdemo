@@ -54,7 +54,7 @@ public class LeaveController {
   }
 
 
-  @ApiOperation(value = "根据学号查询请假信息")
+  @ApiOperation(value = "根据学号查询请假信息 -分页")
   @GetMapping("/selectLeaveByPage")
   @ResponseBody
   public DataResult<Map<String,Object>> selectLeaveByPage(@RequestParam("pageNo") Integer pageNo,
@@ -65,6 +65,15 @@ public class LeaveController {
   }
 
 
+  @ApiOperation(value = "获取请假列表-分页")
+  @GetMapping("/selectByPage")
+  @ResponseBody
+  public DataResult<Map<String,Object>> selectByPage(@RequestParam("pageNo") Integer pageNo,
+                                                          @RequestParam("pageSize") Integer pageSieze){
+    DataResult<Map<String,Object>> result = new DataResult<>();
+    result.setBody(leaveService.selectByPage(pageNo,pageSieze));
+    return result;
+  }
 
 
 }

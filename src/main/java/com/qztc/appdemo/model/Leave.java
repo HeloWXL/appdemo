@@ -1,5 +1,6 @@
 package com.qztc.appdemo.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -28,9 +29,11 @@ public class Leave {
     private String leaveReason;
 
     @TableField("start_time")
+    @JSONField(format="yyyy-MM-dd")
     private Date startTime;
 
     @TableField("end_time")
+    @JSONField(format="yyyy-MM-dd")
     private Date endTime;
 
     @TableField("coundelor_id")
