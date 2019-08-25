@@ -14,6 +14,7 @@ spring:
 
   thymeleaf:
     prefix: classpath:/templates/
+    suffix: .jsp,.html
 
 mybatis-plus:
   mapper-locations: classpath:/mapping/*Mapper.xml

@@ -1,6 +1,6 @@
 <!doctype html>
-<html>
-
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<title>请假详情</title>
@@ -49,25 +49,25 @@
 					
 					<div class="mui-input-row">
 						<label>姓名</label>
-						<input type="text" class="mui-input-clear" value="wangxianlin" disabled="true">
+						<input type="text" class="mui-input-clear" th:value="${leave.student.studentName}" disabled="true" >
 					</div>
 					
 					<div class="mui-input-row">
 						<label>学号</label>
-						<input type="text" class="mui-input-clear" value="151303011" disabled="true">
+						<input type="text" class="mui-input-clear" th:value="${leave.student.studentSno}" disabled="true" >
 					</div>
 				
 					<div class="mui-input-row">
 						<label>开始时间</label>
-						<input type="text" class="mui-input-clear" value="2019-8-21" disabled="true" >
+						<input type="text" class="mui-input-clear" th:value="${leave.startTime}" disabled="true" id="start" >
 					</div>
 						<div class="mui-input-row">
 						<label>结束时间</label>
-						<input type="text" class="mui-input-clear" value="2019-8-23" disabled="true">
+						<input type="text" class="mui-input-clear" th:value="${leave.endTime}" disabled="true" id="end">
 					</div>
 					<div class="mui-input-row">
 						<label>请假课程</label>
-						<input type="text" class="mui-input-clear" value="高等数学" disabled="true">
+						<input type="text" class="mui-input-clear" th:value="${leave.course.courseName}" disabled="true">
 					</div>
 					
 					<div class="mui-input-row">
@@ -81,14 +81,40 @@
 					</div>
 					<div class="mui-input-row">
 						<label>事由</label>
-						<textarea id="taskDesc" rows="8" disabled="true" style="width: 95%; margin-left: 8px;border: 1px solid #BBBBBB;"></textarea>
+						<textarea id="taskDesc" rows="8" th:text="${leave.leaveReason}" disabled="true" style="width: 95%; margin-left: 8px;border: 1px solid #BBBBBB;"></textarea>
 					</div>
 			</ul>
 		</div>
 		<script src="/js/mui.min.js"></script>
 		<script src="/js/jquery-2.1.4.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init({
+        gestureConfig:{
+          tap: true, //默认为true
+          swipe: true //默认为true
+        }
+			});
+      window.addEventListener('swipeleft', function() {
+       history.back(-1);
+      });
+
+			$(function() {
+				var startTime = GMTToStr($("#start").val())
+        $("#start").val(startTime)
+
+        var endTime = GMTToStr($("#end").val())
+        $("#end").val(endTime)
+      });
+
+      function GMTToStr(time){
+        var date = new Date(time);
+        var Str=date.getFullYear() + '-' +
+            (date.getMonth()+1) + '-' +
+            date.getDate();
+        return Str;
+      }
+
+
 		</script>
 	</body>
 

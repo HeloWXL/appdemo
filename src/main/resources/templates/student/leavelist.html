@@ -27,7 +27,6 @@
 				top: 10px;
 				right: 2px;
 			}
-			
 			.mui-btn-outlined{
 				width: 100%;
 				border: none;
@@ -42,14 +41,9 @@
 			<span class="mui-icon mui-icon-back" onclick="javascript:history.back(-1);"></span>
 			<h1 class="mui-title">我的请假记录</h1>
 		</header>
-
 		<div class="mui-content">
 			<ul class="mui-table-view" id="leaveList">
-
-
 			</ul>
-			
-			
 			<div id="loading">
 				<button type="button" class="mui-btn mui-btn-outlined" style="display: none">加载</button>
 			</div>
@@ -59,7 +53,7 @@
 		<script type="text/javascript">
 
 			$(function() {
-        var pageNo = 0 ;
+        var pageNo = 1;
         var studentSno ='';
 
 
@@ -86,7 +80,7 @@
 						for(var i = 0 ;i<data.body.list.length;i++){
               var $node = $('<li class="mui-table-view-cell">\n' +
                   '<span class="mui-badge mui-badge-success" id="success">已批阅</span>\n' +
-                  '<a>\n' +
+                  '<a href = "/leaveApi/selectByPrimaryKey/'+data.body.list[i].leaveId+'">\n' +
                   '<h4>'+data.body.list[i].leaveTitle+'</h4>\n' +
                   '<p>\n' +
                   '请假课程：<span>高等数学</span>\n' +
