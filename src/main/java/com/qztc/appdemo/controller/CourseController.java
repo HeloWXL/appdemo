@@ -34,7 +34,7 @@ public class CourseController {
 
   @ApiOperation(value = "根据ID删除课程信息")
   @GetMapping("/deleteByCourseId/{id}")
-  public DataResult<Integer> deleteByCourseId(@RequestParam("id") Integer id){
+  public DataResult<Integer> deleteByCourseId(@PathVariable("id") Integer id){
     DataResult<Integer> result = new DataResult<>();
     result.setBody(courseService.deleteByPrimaryKey(id));
     return result;

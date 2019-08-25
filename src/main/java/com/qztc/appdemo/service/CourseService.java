@@ -67,8 +67,11 @@ public class CourseService {
    * @return
    */
   public Map<String, Object> getCourseByPage(Integer pageNo, Integer pageSize) {
+    Map<String,Object> data = new HashMap<>();
     EntityWrapper entityWrapper = new EntityWrapper();
-    List<Course> courses = courseMapper.selectPage(new Page<Course>(pageNo,pageSize),entityWrapper);
+    data.put("pageNo",(pageNo - 1) * pageSize);
+    data.put("pageSize",pageSize);
+    List<Course> courses = courseMapper.selectCourseByPage(data);
     int count = courseMapper.selectCount(entityWrapper);
     Map<String,Object> map = new HashMap<>();
     map.put("list",courses);

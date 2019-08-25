@@ -55,7 +55,7 @@ public class LeaveService {
     EntityWrapper entityWrapper = new EntityWrapper();
     Map<String ,Object> map = new HashMap<>();
     Map<String ,Object> data = new HashMap<>();
-    map.put("pageNo",pageNo);
+    map.put("pageNo",(pageNo - 1) * pageSize);
     map.put("pageSize",pageSize);
     map.put("studentSno",studentSno);
     List<Leave> leaveList = leaveMapper.selectLeaveAndStudentByPage(map);

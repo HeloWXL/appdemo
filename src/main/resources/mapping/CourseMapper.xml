@@ -16,6 +16,30 @@
     from course
     where course_id = #{courseId,jdbcType=INTEGER}
   </select>
+
+  <resultMap id="TeacherAndCourse" type="com.qztc.appdemo.model.Course" >
+    <id column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+    <result column="ceate_time" property="ceateTime" jdbcType="TIMESTAMP" />
+    <association property="teacher" javaType="com.qztc.appdemo.model.Teacher">
+      <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+      <result column="teacher_tno" property="teacherTno" jdbcType="VARCHAR" />
+      <result column="teacher_job_title" property="teacherJobTitle" jdbcType="VARCHAR" />
+    </association>
+
+  </resultMap>
+
+
+  <select id="selectCourseByPage" resultMap="TeacherAndCourse" parameterType="map" >
+    select c.course_name,c.ceate_time,t.teacher_name,t.teacher_job_title
+    from course c , teacher t
+    where c.teacher_id = t.teacher_id
+    limit #{pageNo,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from course
     where course_id = #{courseId,jdbcType=INTEGER}

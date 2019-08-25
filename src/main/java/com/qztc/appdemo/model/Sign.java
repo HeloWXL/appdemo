@@ -1,6 +1,7 @@
 package com.qztc.appdemo.model;
 
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ import java.util.Date;
  * @since
  */
 @Data
+@TableName(value = "sign")
 public class Sign {
     @TableId(value = "sign_id",type = IdType.AUTO)
     private Integer signId;

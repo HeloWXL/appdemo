@@ -1,5 +1,6 @@
 package com.qztc.appdemo.model;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -17,20 +18,31 @@ import java.util.Date;
 public class Leave {
     @TableId(value = "leave_id",type = IdType.AUTO)
     private Integer leaveId;
-
+    @TableField("student_sno")
     private String studentSno;
 
+    @TableField("leave_title")
     private String leaveTitle;
 
+    @TableField("leave_reason")
     private String leaveReason;
-    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+
+    @TableField("start_time")
     private Date startTime;
-    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+
+    @TableField("end_time")
     private Date endTime;
 
+    @TableField("coundelor_id")
     private Integer coundelorId;
 
+    @TableField("is_read")
     private Integer isRead;
 
     private Student student;
+
+    @TableField("course_id")
+    private Integer courseId;
+
+    private Course course;
 }
