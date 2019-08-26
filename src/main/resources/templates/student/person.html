@@ -40,7 +40,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav mui-badge-primary">
 			<h1 class="mui-title">我的信息</h1>
-			<button type="button" class="mui-btn mui-btn-outlined">退出</button>
+			<button type="button" class="mui-btn mui-btn-outlined" id="back">退出</button>
 		</header>
 
 		<div class="mui-content">
@@ -118,7 +118,9 @@
           location.href='/student/index.html';
         });
 
-
+        $('#back').click(function() {
+          location.href='/studentApi/removeStudentSession';
+        });
 
         // 获取session的值
         $.ajax({

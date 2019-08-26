@@ -42,6 +42,7 @@ public class StudentController {
     return result;
   }
 
+
   @ApiOperation(value = "根据ID删除学生信息")
   @GetMapping("/deleteByStudentId/{id}")
   public DataResult<Integer> deleteByStudentId(@RequestParam("id") Integer id){
@@ -49,6 +50,7 @@ public class StudentController {
     result.setBody(studentService.deleteByPrimaryKey(id));
     return result;
   }
+
 
   @ApiOperation(value = "添加学生信息")
   @PostMapping("/insertStudent")
@@ -58,6 +60,7 @@ public class StudentController {
     return result;
   }
 
+
   @ApiOperation(value = "修改学生信息")
   @PostMapping("/updateStudent")
   public DataResult<Integer> updateStudent(@RequestBody Student student){
@@ -65,6 +68,7 @@ public class StudentController {
     result.setBody(studentService.updateByPrimaryKeySelective(student));
     return result;
   }
+
 
   @ApiOperation(value = "学生登录")
   @PostMapping("/checkLogin")
@@ -84,6 +88,7 @@ public class StudentController {
     }
     return result;
   }
+
 
   @ApiOperation(value = "获取学生的session对象")
   @PostMapping("getStudentSession")
@@ -107,19 +112,16 @@ public class StudentController {
     return result;
   }
 
-
   @ApiOperation(value = "清除学生的session对象")
   @GetMapping("/removeStudentSession")
   public void removeStudentSession(HttpServletRequest request, HttpServletResponse response){
     request.getSession().removeAttribute("studentsession");
-    try {
-      response.sendRedirect("/toLogin");
-    } catch (IOException e) {
-      e.printStackTrace();
+    if ( request.getSession().getAttribute("studentsession") == null) {
+      try {
+        response.sendRedirect("/toLogin");
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
-
   }
-
-
-
 }
