@@ -77,9 +77,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="/js/jquery-2.1.4.js"></script>
 <script>
   $(function() {
-    $('#login').click(function() {
-      var cno  = $('#cno').val();
-      var password = $('#password').val();
+    $('#login').click(function(e) {
+      e.preventDefault();
+      var cno  = $("#cno").val();
+      var password = $("#password").val();
       $.ajax({
         url:'/counselorApi/checkLogin',
         data:{cno:cno,password:password},

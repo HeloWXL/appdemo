@@ -28,6 +28,15 @@
 				top: 10px;
 				right: 2px;
 			}
+
+			#success{
+				color: #FFFFFF;
+				background-color: #d43f3a;
+				border-radius: 0px 100px;
+				position: absolute;
+				top: 10px;
+				right: 2px;
+			}
 			
 			.mui-content{
 				background-color: #FFFFFF;
@@ -45,7 +54,13 @@
 		<div class="mui-content">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<span class="mui-badge" id="success">已批阅</span>
+
+					<span th:if="${leave.isRead eq 1}"  class="mui-badge" id="success">
+							已批阅
+						</span>
+					<span th:if="${leave.isRead eq 0}"  class="mui-badge" id="fail">
+							未批阅
+						</span>
 					
 					<div class="mui-input-row">
 						<label>姓名</label>

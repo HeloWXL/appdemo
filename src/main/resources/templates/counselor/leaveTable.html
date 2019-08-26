@@ -33,6 +33,9 @@
 						请假课程
 					</th>
 					<th>
+						状态
+					</th>
+					<th>
 						操作
 					</th>
 				</tr>
@@ -87,21 +90,24 @@
                 '<td>\n' +
                 '' + data.body.list[i].leaveReason + '\n' +
                 '</td>\n' +
-                '\t\t\t\t\t<td>\n' +
-                '\t\t\t\t\t\t' + GMTToStr(data.body.list[i].startTime) + '\n' +
-                '\t\t\t\t\t</td>\n' +
-                '\t\t\t\t\t<td>\n' +
-                '\t\t\t\t\t\t' + GMTToStr(data.body.list[i].endTime) + '\n' +
-                '\t\t\t\t\t</td>\n' +
-                '\t\t\t\t\t<td>\n' +
-                '\t\t\t\t\t\t' + data.body.list[i].course.courseName + '\n' +
-                '\t\t\t\t\t</td>\n' +
-                '\t\t\t\t\t<td>\n' +
-                '\t\t\t\t\t\t\t<button type="button" class="btn btn-success btn-sm">查看</button>\n' +
-                '\t\t\t\t\t\t<button type="button" class="btn btn-info btn-sm">删除</button>\n' +
-                '\t\t\t\t\t\t<button type="button" class="btn btn-warning btn-sm">删除</button>\n' +
-                '\t\t\t\t\t</td>\n' +
-                '\t\t\t\t</tr>');
+                '<td>\n' +
+                '' + GMTToStr(data.body.list[i].startTime) + '\n' +
+                '</td>\n' +
+                '<td>\n' +
+                '' + GMTToStr(data.body.list[i].endTime) + '\n' +
+                '</td>\n' +
+                '<td>\n' +
+                '' + data.body.list[i].course.courseName + '\n' +
+                '</td>\n' +
+                '<td>\n' +
+                '' + data.body.list[i].isRead + '\n' +
+                '</td>\n' +
+                '<td>\n' +
+                '<button type="button" class="btn btn-success btn-sm">查看</button>\n' +
+                '<button type="button" class="btn btn-info btn-sm">删除</button>\n' +
+                '<button type="button" class="btn btn-warning btn-sm">删除</button>\n' +
+                '</td>\n' +
+                '</tr>');
             $('#leaveTable').append($node);
             if (a == 5) {
               a = 0;
