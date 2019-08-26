@@ -6,8 +6,32 @@
 		<link href="/bootstrap-3.3.7/dist/css/bootstrap.css" rel="stylesheet" />
 		<link href="/css/common.css" rel="stylesheet" />
 		<link rel="shortcut icon" href="/ico/index.ico"/>
+		<style>
+			#add{
+				float: right;
+				margin-right: 0.3125rem;
+			}
+			#find{
+				width:300px;
+				float: left;
+				margin-left: 0.3125rem;
+				margin-bottom: 0.3125rem;
+			}
+		</style>
 	</head>
 	<body>
+		<div id="find">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="请输入你要查询的学号">
+				<span class="input-group-btn">
+						<button class="btn btn-default" type="button" >查询</button>
+				</span>
+			</div>
+		</div>
+		<div id="add">
+			<button type="button" class="btn btn-success btn-sm">
+				<span class="glyphicon glyphicon-plus"></span> 添加</button>
+		</div>
 		<table class="table table-bordered table-hover table-condensed">
 			<thead>
 				<tr>

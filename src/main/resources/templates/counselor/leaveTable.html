@@ -4,10 +4,34 @@
 		<meta charset="utf-8">
 		<title>教师列表</title>
 		<link href="/bootstrap-3.3.7/dist/css/bootstrap.css" rel="stylesheet" />
-	<link href="/css/common.css" rel="stylesheet" />
+	 <link href="/css/common.css" rel="stylesheet" />
 		<link rel="shortcut icon" href="/ico/index.ico"/>
+		<link href="/layui/css/layui.css" rel="stylesheet" />
+		<style>
+			#find div{
+				float: left;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+		</style>
 	</head>
 	<body>
+
+	<div id="find">
+		<div class="layui-inline">
+			<label class="layui-form-label">开始日期</label>
+			<div class="layui-input-inline">
+				<input type="text" name="start" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-inline">
+			<label class="layui-form-label">结束日期</label>
+			<div class="layui-input-inline">
+				<input type="text" name="end" id="date1" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+	</div>
+
 		<table class="table table-bordered table-hover table-condensed">
 			<thead>
 				<tr>
@@ -59,6 +83,7 @@
 
 
 	<script src="/js/jquery-2.1.4.js" type="application/javascript"></script>
+	<script src="/layui/layui.js" type="application/javascript"></script>ss
 	<script src="/bootstrap-3.3.7/dist/js/bootstrap.js" type="application/javascript"></script>
 	<script>
     $(function() {
@@ -74,7 +99,7 @@
         dataType: 'json',
         type: 'get',
         success: function(data) {
-          console.log(data)
+          console.log(data);
           for (var i = 0; i < data.body.list.length; i++) {
             var $node = $('<tr class=' + classArr[a++] + '>\n' +
 
