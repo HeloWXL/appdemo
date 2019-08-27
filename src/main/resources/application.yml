@@ -5,17 +5,13 @@ spring:
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-
   mvc:
     static-path-pattern: /**
-
   resources:
     static-locations: classpath:/templates/,classpath:/static/
-
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .jsp,.html
-
 mybatis-plus:
   mapper-locations: classpath:/mapping/*Mapper.xml
   typeAliasesPackage: com.qztc.appdemo.model

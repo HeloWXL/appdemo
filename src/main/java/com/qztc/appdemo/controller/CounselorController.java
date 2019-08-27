@@ -66,6 +66,7 @@ public class CounselorController {
     return result;
   }
 
+
   @ApiOperation(value = "辅导员登录")
   @PostMapping("/checkLogin")
   public DataResult<Boolean> checkLogin(@RequestParam("cno") String cno, @RequestParam("password") String password, HttpServletRequest request){
