@@ -96,7 +96,6 @@
 	<script src="/layui/layui.js" type="application/javascript"></script>
 	<script>
 		$(function() {
-
 			$("#student").click(function() {
 				$("iframe").attr("src", "/toStudentTable")
 			})
@@ -106,8 +105,6 @@
 			$("#leave").click(function() {
 				$("iframe").attr("src", "/toLeaveTable")
 			})
-
-
 			$("#s").click(function() {
 				$("#success").fadeIn("slow");
 				$("#fail").fadeOut("slow");
@@ -117,14 +114,7 @@
 				$("#fail").fadeIn("slow");
 				$("#success").fadeOut("slow");
 			})
-
-
-
-
-
-
 		})
-
 
 		layui.use('element', function() {
 			var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块

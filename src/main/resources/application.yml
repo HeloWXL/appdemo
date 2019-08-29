@@ -11,7 +11,9 @@ spring:
     static-locations: classpath:/templates/,classpath:/static/
   thymeleaf:
     prefix: classpath:/templates/
-    suffix: .jsp,.html
+    suffix: .html
+
+
 mybatis-plus:
   mapper-locations: classpath:/mapping/*Mapper.xml
   typeAliasesPackage: com.qztc.appdemo.model

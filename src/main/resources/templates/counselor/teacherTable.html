@@ -6,70 +6,80 @@
   <link href="/bootstrap-3.3.7/dist/css/bootstrap.css" rel="stylesheet"/>
   <link href="/css/common.css" rel="stylesheet"/>
   <link rel="shortcut icon" href="/ico/index.ico"/>
+  <link href="/layui/css/layui.css" rel="stylesheet"/>
+   <link rel="stylesheet" href="css/xcConfirm.css">
   <style>
-    #add{
+    .layui-input-block input {
+      width: 200px;
+    }
+
+    .layui-input-block {
+      margin-left: 1px;
+      float: left;
+    }
+
+    #add {
       float: right;
       margin-right: 0.3125rem;
     }
-    #find{
-      width:300px;
-      float: left;
-      margin-left: 0.3125rem;
-      margin-bottom: 0.3125rem;
+
+    .layui-form-item {
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
+<div class="layui-form-item">
+  <div class="layui-input-block">
+    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入你要查询的学号" class="layui-input">
+  </div>
+  <div class="layui-input-block">
+    <button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i>查询</button>
+  </div>
 
-<div id="find">
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="请输入你要查询的学号">
-    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" >查询</button>
-                    </span>
+  <div id="add">
+    <button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe654;</i>添加</button>
   </div>
 </div>
-<div id="add">
-  <button type="button" class="btn btn-success btn-sm">
-    <span class="glyphicon glyphicon-plus"></span> 添加</button>
+<div id="table">
+  <table class="table table-bordered table-hover table-condensed">
+    <thead>
+    <tr>
+      <th>
+        教师姓名
+      </th>
+      <th>
+        教师工号
+      </th>
+      <th>
+        教师职称
+      </th>
+      <th>
+        年龄
+      </th>
+      <th>
+        性别
+      </th>
+      <th>
+        专业
+      </th>
+      <th>
+        学院
+      </th>
+      <th>
+        学校
+      </th>
+      <th>
+        操作
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    </tbody>
+  </table>
 </div>
-<table class="table table-bordered table-hover table-condensed">
-  <thead>
-  <tr>
-    <th>
-      教师姓名
-    </th>
-    <th>
-      教师工号
-    </th>
-    <th>
-      教师职称
-    </th>
-    <th>
-      年龄
-    </th>
-    <th>
-      性别
-    </th>
-    <th>
-     专业
-    </th>
-    <th>
-      学院
-    </th>
-    <th>
-      学校
-    </th>
-    <th>
-      操作
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-
-
-  </tbody>
-</table>
 
 <div id="fenye">
   <ul class="pagination">
@@ -88,6 +98,8 @@
 
 <script src="/js/jquery-2.1.4.js" type="application/javascript"></script>
 <script src="/bootstrap-3.3.7/dist/js/bootstrap.js" type="application/javascript"></script>
+<script src="/layui/layui.js" type="application/javascript"></script>
+<script src="/js/xcConfirm.js"></script>
 <script>
   $(function() {
     var a = 0;

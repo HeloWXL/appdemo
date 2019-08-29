@@ -1,145 +1,163 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>学生表</title>
-		<link href="/bootstrap-3.3.7/dist/css/bootstrap.css" rel="stylesheet" />
-		<link href="/css/common.css" rel="stylesheet" />
-		<link rel="shortcut icon" href="/ico/index.ico"/>
-		<style>
-			#add{
-				float: right;
-				margin-right: 0.3125rem;
-			}
-			#find{
-				width:300px;
-				float: left;
-				margin-left: 0.3125rem;
-				margin-bottom: 0.3125rem;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="find">
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="请输入你要查询的学号">
-				<span class="input-group-btn">
-						<button class="btn btn-default" type="button" >查询</button>
-				</span>
-			</div>
-		</div>
-		<div id="add">
-			<button type="button" class="btn btn-success btn-sm">
-				<span class="glyphicon glyphicon-plus"></span> 添加</button>
-		</div>
-		<table class="table table-bordered table-hover table-condensed">
-			<thead>
-				<tr>
-				
-					<th>
-						学生姓名
-					</th>
-					<th>
-						头像
-					</th>
-					<th>
-						学号
-					</th>
-					<th>
-						年龄
-					</th>
-					<th>
-						性别
-					</th>
-					<th>
-						QQ
-					</th>
-					<th>
-						邮箱
-					</th>
-						<th>
-							操作
-						</th>
-				</tr>
-			</thead>
-			<tbody id="student_tbody">
-			</tbody>
-		</table>
-		
-		<div id="fenye">
-			<ul class="pagination">
-				<li>
-					<a href="#" id="prev">上一页</a>
-				</li>
-				<li>
-					<a href="#" id="next">下一页</a>
-				</li>
-			</ul>
-		</div>
-	</body>
-	
-	<script src="/js/jquery-2.1.4.js" type="application/javascript"></script>
-	<script src="/bootstrap-3.3.7/dist/js/bootstrap.js" type="application/javascript"></script>
-	
-	<script>
-			$(function(){
+<head>
+  <meta charset="utf-8">
+  <title>学生表</title>
+  <link href="/bootstrap-3.3.7/dist/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/css/common.css" rel="stylesheet"/>
+  <link href="/layui/css/layui.css" rel="stylesheet"/>
+  <link rel="shortcut icon" href="/ico/index.ico"/>
+   <link rel="stylesheet" href="/css/xcConfirm.css">
+  <style>
+    body {
+      margin-top: 10px;
+    }
+    .layui-input-block input {
+      width: 200px;
+    }
+    .layui-input-block {
+      margin-left: 1px;
+      float: left;
+    }
+    #add {
+      float: right;
+      margin-right: 0.3125rem;
+    }
+    .layui-form-item {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="layui-form-item">
+  <div class="layui-input-block">
+    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入你要查询的学号" class="layui-input">
+  </div>
+  <div class="layui-input-block">
+    <button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i>查询</button>
+  </div>
 
+  <div id="add">
+    <button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe654;</i>添加</button>
+  </div>
+</div>
+<div id="table">
+  <table class="table table-bordered table-hover table-condensed">
+  <thead>
+  <tr>
 
-        var pageNo = 1;
-        var pageSize = 10;
-        var a = 0;
-        var b = 0;
-        // 定义表格的样式
-        var classArr = new Array('', 'success', 'error', 'warning', 'info');
+    <th>
+      学生姓名
+    </th>
+    <th>
+      头像
+    </th>
+    <th>
+      学号
+    </th>
+    <th>
+      年龄
+    </th>
+    <th>
+      性别
+    </th>
+    <th>
+      QQ
+    </th>
+    <th>
+      邮箱
+    </th>
+    <th>
+      操作
+    </th>
+  </tr>
+  </thead>
+  <tbody id="student_tbody">
+  </tbody>
+</table>
+</div>
+<div id="fenye">
+  <ul class="pagination">
+    <li>
+      <a href="#" id="prev">上一页</a>
+    </li>
+    <li>
+      <a href="#" id="next">下一页</a>
+    </li>
+  </ul>
+</div>
+</body>
 
+<script src="/js/jquery-2.1.4.js" type="application/javascript"></script>
+<script src="/bootstrap-3.3.7/dist/js/bootstrap.js" type="application/javascript"></script>
+<script src="/layui/layui.js" type="application/javascript"></script>
+<script src="/js/xcConfirm.js"></script>
 
-        $.ajax({
-          url:'/studentApi/selectStudentByPage',
-          data:{pageNo:pageNo,pageSize:pageSize},
-          dataType:'json',
-          type:'get',
-          success:function(data) {
-            for(var i = 0 ; i<data.body.list.length;i++){
-              var $node = $("<tr class="+classArr[a++]+">\n" +
+<script>
+  $(function() {
+    var pageNo = 1;
+    var pageSize = 10;
+    var a = 0;
+    var b = 0;
+    // 定义表格的样式
+    var classArr = new Array('', 'success', 'error', 'warning', 'info');
 
-                  "<td>\n" +
-                  ""+data.body.list[i].studentName+"\n" +
-                  "</td>\n" +
-                  "<td>\n" +
-                  "<img src="+data.body.list[i].studentPic+" width=\"30px\" height=\"30px\" style=\"border-radius: 50%;\"/>\n" +
-                  "</td>\n" +
-                  "<td>\n" +
-                  ""+data.body.list[i].studentSno+"\n" +
-                  "</td>\n" +
-                  "<td>\n" +
-                  ""+data.body.list[i].studentAge+"\n" +
-                  "</td>\n" +
-                  "\t\t\t\t\t<td>\n" +
-                  "\t\t\t\t\t\t"+data.body.list[i].studentSex+"\n" +
-                  "\t\t\t\t\t</td>\n" +
-                  "\t\t\t\t\t<td>\n" +
-                  "\t\t\t\t\t\t"+data.body.list[i].studentQq+"\n" +
-                  "\t\t\t\t\t</td>\n" +
-                  "\t\t\t\t\t<td>\n" +
-                  "\t\t\t\t\t\t"+data.body.list[i].studentEmail+"\n" +
-                  "\t\t\t\t\t</td>\n" +
-                  "\t\t\t\t\t<td>\n" +
-                  "\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-success btn-sm\">查看</button>\n" +
-                  "\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-info btn-sm\">删除</button>\n" +
-                  "\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-warning btn-sm\">删除</button>\n" +
-                  "\t\t\t\t\t</td>\n" +
-                  "\t\t\t\t</tr>")
-              $("#student_tbody").append($node);
-              if (a == 5) {
-                a = 0;
-              }
-            }
+    $.ajax({
+      url: '/studentApi/selectStudentByPage',
+      data: {pageNo: pageNo, pageSize: pageSize},
+      dataType: 'json',
+      type: 'get',
+      success: function(data) {
+        for (var i = 0; i < data.body.list.length; i++) {
+          var $node = $('<tr class=' + classArr[a++] + '>\n' +
+
+              '<td>\n' +
+              '' + data.body.list[i].studentName + '\n' +
+              '</td>\n' +
+              '<td>\n' +
+              '<img src=' + data.body.list[i].studentPic + ' width="30px" height="30px" style="border-radius: 50%;"/>\n' +
+              '</td>\n' +
+              '<td>\n' +
+              '' + data.body.list[i].studentSno + '\n' +
+              '</td>\n' +
+              '<td>\n' +
+              '' + data.body.list[i].studentAge + '\n' +
+              '</td>\n' +
+              '\t\t\t\t\t<td>\n' +
+              '\t\t\t\t\t\t' + data.body.list[i].studentSex + '\n' +
+              '\t\t\t\t\t</td>\n' +
+              '\t\t\t\t\t<td>\n' +
+              '\t\t\t\t\t\t' + data.body.list[i].studentQq + '\n' +
+              '\t\t\t\t\t</td>\n' +
+              '\t\t\t\t\t<td>\n' +
+              '\t\t\t\t\t\t' + data.body.list[i].studentEmail + '\n' +
+              '\t\t\t\t\t</td>\n' +
+              '\t\t\t\t\t<td>\n' +
+              '\t\t\t\t\t\t\t<button type="button" class="btn btn-success btn-sm">查看</button>\n' +
+              '\t\t\t\t\t\t<button type="button" class="btn btn-info btn-sm">删除</button>\n' +
+              '\t\t\t\t\t\t<button type="button" class="btn btn-warning btn-sm" name="delete">删除</button>\n' +
+              '\t\t\t\t\t</td>\n' +
+              '\t\t\t\t</tr>');
+          $('#student_tbody').append($node);
+          if (a == 5) {
+            a = 0;
           }
-        });
+        }
+      }
+    });
+
+    $('#student_tbody').on('click','button[name="delete"]',function() {
+      var studentName = $.trim($(this).closest("tr").children().eq(0).html())
+      var txt=  "确认要删除"+studentName+"吗？";
+      window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.warning,{
+        onOk: function() {
+          deleteStudent(studentno,obj)
+        }
+      });
+    });
 
 
+  });
+</script>
 
-		});
-	</script>
-	
 </html>

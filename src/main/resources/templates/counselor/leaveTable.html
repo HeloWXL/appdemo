@@ -8,30 +8,41 @@
 		<link rel="shortcut icon" href="/ico/index.ico"/>
 		<link href="/layui/css/layui.css" rel="stylesheet" />
 		<style>
-			#find div{
-				float: left;
-				margin-left: 10px;
-				margin-right: 10px;
+			.layui-input-block{
+				margin-left: 1px;
+				float:left;
+			}
+
+			.layui-form-item{
+				margin-top: 10px;
+			}
+			.layui-form-label{
+				width: 90px;
 			}
 		</style>
 	</head>
 	<body>
-
-	<div id="find">
+	<div class="layui-form-item">
 		<div class="layui-inline">
-			<label class="layui-form-label">开始日期</label>
-			<div class="layui-input-inline">
-				<input type="text" name="start" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+			<label class="layui-form-label">起始日期</label>
+			<div class="layui-input-block">
+				<input type="text" name="date" id="start" autocomplete="off" placeholder="请选择查询的起始日期" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-inline">
 			<label class="layui-form-label">结束日期</label>
-			<div class="layui-input-inline">
-				<input type="text" name="end" id="date1" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+			<div class="layui-input-block">
+				<input type="text" name="date" id="end" autocomplete="off" class="layui-input" placeholder="请选择查询的结束日期">
 			</div>
 		</div>
+		<div class="layui-inline">
+			<button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i>查询</button>
+		</div>
+		<div class="layui-input-block">
+			<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入你要查询的学号" class="layui-input">
+		</div>
 	</div>
-
+	<div id="table">
 		<table class="table table-bordered table-hover table-condensed">
 			<thead>
 				<tr>
@@ -68,7 +79,7 @@
 
 			</tbody>
 		</table>
-
+	</div>
 		<div id="fenye">
 			<ul class="pagination">
 				<li>

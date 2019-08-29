@@ -86,4 +86,11 @@ public class HomeController {
   public String toLeaveTable(){
     return "/counselor/leaveTable.html";
   }
+
+
+  @ApiOperation(value = "测试jsp")
+  @GetMapping("/to")
+  public String test(){
+    return "/login";
+  }
 }
