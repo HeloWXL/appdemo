@@ -31,14 +31,14 @@
 <body>
 <div class="layui-form-item">
   <div class="layui-input-block">
-    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入你要查询的学号" class="layui-input">
+    <input type="text" name="studentSno" lay-verify="title" autocomplete="off" placeholder="请输入你要查询的学号" class="layui-input">
   </div>
   <div class="layui-input-block">
-    <button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i>查询</button>
+    <button type="button" class="layui-btn layui-btn-primary" id="query"><i class="layui-icon">&#xe615;</i>查询</button>
   </div>
 
   <div id="add">
-    <button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe654;</i>添加</button>
+    <button type="button" class="layui-btn layui-btn-primary" id="adds"><i class="layui-icon">&#xe654;</i>添加</button>
   </div>
 </div>
 <div id="table">
@@ -102,6 +102,7 @@
     // 定义表格的样式
     var classArr = new Array('', 'success', 'error', 'warning', 'info');
 
+    // 加载学生列表
     $.ajax({
       url: '/studentApi/selectStudentByPage',
       data: {pageNo: pageNo, pageSize: pageSize},
@@ -110,7 +111,6 @@
       success: function(data) {
         for (var i = 0; i < data.body.list.length; i++) {
           var $node = $('<tr class=' + classArr[a++] + '>\n' +
-
               '<td>\n' +
               '' + data.body.list[i].studentName + '\n' +
               '</td>\n' +
@@ -146,16 +146,70 @@
       }
     });
 
+    // 删除
     $('#student_tbody').on('click','button[name="delete"]',function() {
-      var studentName = $.trim($(this).closest("tr").children().eq(0).html())
-      var txt=  "确认要删除"+studentName+"吗？";
+      var studentName = $.trim($(this).closest('tr').children().eq(0).html());
+      var txt=  '确认要删除'+studentName+'吗？';
       window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.warning,{
         onOk: function() {
-          deleteStudent(studentno,obj)
+          deleteStudent(studentno,obj);
         }
       });
     });
 
+    // 查询
+    $('#query').click(function() {
+      var sno = $("input[name='studentSno']").val();
+        $.ajax({
+          url: '/studentApi/selectByStudentId/'+sno+'',
+          dataType: 'json',
+          type: 'get',
+          success: function(data){
+
+            $('#student_tbody').empty();
+            if(data.body==null){
+              var txt=  "该学号不存在";
+              window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.info);
+            }else{
+
+              var $node = $('<tr class=' + classArr[a++] + '>\n' +
+                  '<td>\n' +
+                  '' + data.body.studentName + '\n' +
+                  '</td>\n' +
+                  '<td>\n' +
+                  '<img src=' + data.body.studentPic + ' width="30px" height="30px" style="border-radius: 50%;"/>\n' +
+                  '</td>\n' +
+                  '<td>\n' +
+                  '' + data.body.studentSno + '\n' +
+                  '</td>\n' +
+                  '<td>\n' +
+                  '' + data.body.studentAge + '\n' +
+                  '</td>\n' +
+                  '\t\t\t\t\t<td>\n' +
+                  '\t\t\t\t\t\t' + data.body.studentSex + '\n' +
+                  '\t\t\t\t\t</td>\n' +
+                  '\t\t\t\t\t<td>\n' +
+                  '\t\t\t\t\t\t' + data.body.studentQq + '\n' +
+                  '\t\t\t\t\t</td>\n' +
+                  '\t\t\t\t\t<td>\n' +
+                  '\t\t\t\t\t\t' + data.body.studentEmail + '\n' +
+                  '\t\t\t\t\t</td>\n' +
+                  '\t\t\t\t\t<td>\n' +
+                  '\t\t\t\t\t\t\t<button type="button" class="btn btn-success btn-sm">查看</button>\n' +
+                  '\t\t\t\t\t\t<button type="button" class="btn btn-info btn-sm">删除</button>\n' +
+                  '\t\t\t\t\t\t<button type="button" class="btn btn-warning btn-sm" name="delete">删除</button>\n' +
+                  '\t\t\t\t\t</td>\n' +
+                  '\t\t\t\t</tr>');
+              $('#student_tbody').append($node);
+            }
+          }
+        });
+    });
+
+    $('#adds').click(function() {
+      var txt=  "添加添加";
+      window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.info);
+    });
 
   });
 </script>

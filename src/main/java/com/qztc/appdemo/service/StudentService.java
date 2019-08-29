@@ -45,11 +45,11 @@ public class StudentService {
 
   /**
    * 根据学生的ID查询学生信息
-   * @param studentId
+   * @param sno
    * @return  Student
    */
-  public Student selectByPrimaryKey(Integer studentId){
-    return studentMapper.selectByPrimaryKey(studentId);
+  public Student selectByPrimaryKey(String sno){
+    return studentMapper.selectByPrimaryKey(sno);
   }
 
   /**

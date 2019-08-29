@@ -31,14 +31,14 @@
 <body>
 <div class="layui-form-item">
   <div class="layui-input-block">
-    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入你要查询的学号" class="layui-input">
+    <input type="text" name="Tno" lay-verify="title" autocomplete="off" placeholder="请输入你要查询的工号" class="layui-input">
   </div>
   <div class="layui-input-block">
-    <button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i>查询</button>
+    <button type="button" class="layui-btn layui-btn-primary" id="query"><i class="layui-icon">&#xe615;</i>查询</button>
   </div>
 
   <div id="add">
-    <button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe654;</i>添加</button>
+    <button type="button" class="layui-btn layui-btn-primary" id="insert"><i class="layui-icon">&#xe654;</i>添加</button>
   </div>
 </div>
 <div id="table">
@@ -91,11 +91,7 @@
     </li>
   </ul>
 </div>
-
-
 </body>
-
-
 <script src="/js/jquery-2.1.4.js" type="application/javascript"></script>
 <script src="/bootstrap-3.3.7/dist/js/bootstrap.js" type="application/javascript"></script>
 <script src="/layui/layui.js" type="application/javascript"></script>
@@ -155,6 +151,67 @@
         }
       }
     });
+
+    // 添加
+    $('#insert').click(function() {
+      var txt=  "添加添加";
+      window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.info);
+    });
+
+    // 查询
+    $('#query').click(function() {
+      var Tno = $("input[name='Tno']").val();
+      console.log(Tno)
+      $.ajax({
+        url: '/teacherApi/selectByTeacherId/'+Tno+'',
+        dataType: 'json',
+        type: 'get',
+        success: function(data){
+          $('tbody').empty();
+          if(data.body==null){
+            var txt=  "该工号不存在";
+            window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.info);
+          }else{
+
+            var $node = $('<tr class=' + classArr[a++] + '>\n' +
+
+                '<td>\n' +
+                '' + data.body.teacherName + '\n' +
+                '</td>\n' +
+                '<td>\n' +
+                '' + data.body.teacherTno + '\n' +
+                '</td>\n' +
+                '<td>\n' +
+                '' + data.body.teacherJobTitle + '\n' +
+                '</td>\n' +
+                '<td>\n' +
+                '' + data.body.teacherAge + '\n' +
+                '</td>\n' +
+                '\t\t\t\t\t<td>\n' +
+                '\t\t\t\t\t\t' + data.body.teacherSex + '\n' +
+                '\t\t\t\t\t</td>\n' +
+                '\t\t\t\t\t<td>\n' +
+                '\t\t\t\t\t\t' + data.body.profession.professionName + '\n' +
+                '\t\t\t\t\t</td>\n' +
+                '\t\t\t\t\t<td>\n' +
+                '\t\t\t\t\t\t' + data.body.profession.apartment + '\n' +
+                '\t\t\t\t\t</td>\n' +
+                '\t\t\t\t\t<td>\n' +
+                '\t\t\t\t\t\t' + data.body.profession.school + '\n' +
+                '\t\t\t\t\t</td>\n' +
+                '\t\t\t\t\t<td>\n' +
+                '\t\t\t\t\t\t\t<button type="button" class="btn btn-success btn-sm">查看</button>\n' +
+                '\t\t\t\t\t\t<button type="button" class="btn btn-info btn-sm">删除</button>\n' +
+                '\t\t\t\t\t\t<button type="button" class="btn btn-warning btn-sm">删除</button>\n' +
+                '\t\t\t\t\t</td>\n' +
+                '\t\t\t\t</tr>');
+            $('tbody').append($node);
+          }
+        }
+      });
+    });
+
+
   });
 </script>
 

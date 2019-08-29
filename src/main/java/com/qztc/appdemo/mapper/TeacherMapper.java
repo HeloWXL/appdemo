@@ -30,10 +30,10 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
 
     /**
      * 根据教师ID查询教师信息
-     * @param teacherId
+     * @param tno
      * @return
      */
-    Teacher selectByPrimaryKey(Integer teacherId);
+    Teacher selectByPrimaryKey(String tno);
 
     /**
      * 修改教师信息

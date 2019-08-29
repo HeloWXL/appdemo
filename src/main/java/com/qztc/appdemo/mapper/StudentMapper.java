@@ -27,10 +27,10 @@ public interface StudentMapper extends BaseMapper<Student> {
 
     /**
      * 根据学生的ID查询学生信息
-     * @param studentId
+     * @param sno
      * @return  Student
      */
-    Student selectByPrimaryKey(Integer studentId);
+    Student selectByPrimaryKey(String sno);
 
     /**
      * 修改学生信息

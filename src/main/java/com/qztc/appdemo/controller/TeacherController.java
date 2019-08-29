@@ -79,11 +79,11 @@ public class TeacherController {
     return result;
   }
 
-  @ApiOperation(value = "根据ID查询教师信息")
-  @GetMapping("/selectByTeacherId/{id}")
-  public DataResult<Teacher> selectByTeacherId(@RequestParam("id") Integer id) {
+  @ApiOperation(value = "根据tno查询教师信息")
+  @GetMapping("/selectByTeacherId/{tno}")
+  public DataResult<Teacher> selectByTeacherId(@PathVariable("tno") String tno) {
     DataResult<Teacher> result = new DataResult<>();
-    result.setBody(teacherService.selectByPrimaryKey(id));
+    result.setBody(teacherService.selectByPrimaryKey(tno));
     return result;
   }
 

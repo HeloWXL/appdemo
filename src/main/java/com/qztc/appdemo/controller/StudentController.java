@@ -34,11 +34,11 @@ public class StudentController {
   @Resource
   private ProfessionService professionService;
 
-  @ApiOperation(value = "根据ID查询学生信息")
-  @GetMapping("/selectByStudentId/{id}")
-  public DataResult<Student> selectByStudentId(@RequestParam("id") Integer id){
+  @ApiOperation(value = "根据Sno查询学生信息")
+  @GetMapping("/selectByStudentId/{sno}")
+  public DataResult<Student> selectByStudentId(@PathVariable("sno") String sno){
     DataResult<Student> result = new DataResult<>();
-    result.setBody(studentService.selectByPrimaryKey(id));
+    result.setBody(studentService.selectByPrimaryKey(sno));
     return result;
   }
 

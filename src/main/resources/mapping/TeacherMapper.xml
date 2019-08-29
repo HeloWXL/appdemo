@@ -40,10 +40,10 @@
     </association>
   </resultMap>
 
-  <select id="selectByPrimaryKey" resultMap="TeacherAndProfessionMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="TeacherAndProfessionMap" parameterType="java.lang.String" >
     select t.teacher_name,t.teacher_tno,t.teacher_job_title,t.teacher_sex,t.teacher_age,p.profession_name ,p.apartment ,p.school
     from teacher t ,profession p
-    where t.profession_id = p.profession_id AND t.teacher_id = #{teacherId,jdbcType=INTEGER}
+    where t.profession_id = p.profession_id AND t.teacher_tno = #{teacherTno,jdbcType=VARCHAR}
   </select>
 
 
@@ -58,7 +58,7 @@
 
 
 
-  <select id="selectByTno" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByTno" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select *
     from teacher
     where teacher_tno = #{teacherTno,jdbcType=VARCHAR}

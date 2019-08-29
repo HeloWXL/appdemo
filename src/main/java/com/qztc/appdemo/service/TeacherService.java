@@ -49,11 +49,11 @@ public class TeacherService {
 
   /**
    * 根据教师ID查询教师信息
-   * @param teacherId
+   * @param tno
    * @return
    */
-  public Teacher selectByPrimaryKey(Integer teacherId){
-    return teacherMapper.selectByPrimaryKey(teacherId);
+  public Teacher selectByPrimaryKey(String tno){
+    return teacherMapper.selectByPrimaryKey(tno);
   }
 
   /**
