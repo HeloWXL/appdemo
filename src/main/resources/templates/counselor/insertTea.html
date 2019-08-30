@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="/layui/css/layui.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/layer/theme/default/layer.css">
+  <link rel="stylesheet" href="/css/xcConfirm.css">
+
+  <style>
+    .grid-demo{
+      text-align: center;
+    }
+    #insert{
+      width:400px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="layui-row">
+  <div class="layui-col-md4">
+    <div class="grid-demo grid-demo-bg1"></div>
+  </div>
+  <div class="layui-col-md4">
+    <div class="grid-demo grid-demo-bg1">
+
+      <div id="insert">
+        <form class="layui-form" action="" lay-filter="example">
+          <div class="layui-form-item">
+            <label class="layui-form-label">教师工号</label>
+            <div class="layui-input-block">
+              <input type="text" name="teacherNo" lay-verify="title" autocomplete="off" placeholder="请输入工号" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">教师姓名</label>
+            <div class="layui-input-block">
+              <input type="text" name="teacherName" lay-verify="title" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">年龄</label>
+            <div class="layui-input-block">
+              <input type="text" name="teacherAge" lay-verify="title" autocomplete="off" placeholder="请输入年龄" class="layui-input">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+              <input type="password" name="teacherPassword" placeholder="密码" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+              <select name="sex" lay-filter="sex">
+                <option value=""></option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+              </select>
+            </div>
+          </div>
+
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">职称</label>
+            <div class="layui-input-block">
+              <select name="teacherJobTitle">
+                <option value=""></option>
+                <option value="教授">教授</option>
+                <option value="讲师">讲师</option>
+                <option value="助教">助教</option>
+                <option value="博士">博士</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">专业</label>
+            <div class="layui-input-block">
+              <select name="professionId" lay-filter="profession">
+                <option value=""></option>
+                <option value="1">信息管理与信息系统</option>
+                <option value="3">物联网</option>
+                <option value="4">大数据科学与技术</option>
+                <option value="2">计算机科学与技术</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              <button class="layui-btn"   id="submit">立即提交</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="layui-col-md4">
+    <div class="grid-demo grid-demo-bg1"></div>
+  </div>
+</div>
+</body>
+<script src="/js/jquery-2.1.4.js" type="application/javascript"></script>
+<script src="/layui/layui.js" type="application/javascript"></script>
+<script src="/js/insertTea.js" type="application/javascript"></script>
+<script src="/js/xcConfirm.js"></script>
+<script src="/layer/layer.js"></script>
+</html>

@@ -8,6 +8,7 @@
   <link href="/layui/css/layui.css" rel="stylesheet"/>
   <link rel="shortcut icon" href="/ico/index.ico"/>
    <link rel="stylesheet" href="/css/xcConfirm.css">
+  <link rel="stylesheet" href="/layer/theme/default/layer.css">
   <style>
     body {
       margin-top: 10px;
@@ -92,6 +93,7 @@
 <script src="/bootstrap-3.3.7/dist/js/bootstrap.js" type="application/javascript"></script>
 <script src="/layui/layui.js" type="application/javascript"></script>
 <script src="/js/xcConfirm.js"></script>
+<script src="/layer/layer.js"></script>
 
 <script>
   $(function() {
@@ -207,9 +209,20 @@
     });
 
     $('#adds').click(function() {
-      var txt=  "添加添加";
-      window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.info);
+      layer.open({
+        title: false,
+        type: 2,
+        closeBtn: 0, //不显示关闭按钮
+        shade: 0.5,
+        area: ['455px', '530px'],
+        offset: 'auto',
+        anim: 2,
+        shadeClose: true,
+        content: ['/insertStudent', 'no']
+      });
     });
+
+
 
   });
 </script>

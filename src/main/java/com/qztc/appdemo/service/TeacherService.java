@@ -6,6 +6,7 @@ import com.qztc.appdemo.mapper.TeacherMapper;
 import com.qztc.appdemo.model.Course;
 import com.qztc.appdemo.model.Student;
 import com.qztc.appdemo.model.Teacher;
+import com.qztc.appdemo.utils.Md5Utils;
 import com.qztc.appdemo.vo.TeacherVo;
 import org.omg.CORBA.INTERNAL;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,7 @@ public class TeacherService {
    * @return
    */
   public int insertSelective(Teacher record){
+    record.setTeacherPassword(Md5Utils.getSaltMD5(record.getTeacherPassword()));
     return teacherMapper.insertSelective(record);
   }
 

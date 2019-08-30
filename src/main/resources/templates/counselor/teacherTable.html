@@ -8,6 +8,8 @@
   <link rel="shortcut icon" href="/ico/index.ico"/>
   <link href="/layui/css/layui.css" rel="stylesheet"/>
    <link rel="stylesheet" href="css/xcConfirm.css">
+  <link rel="stylesheet" href="/layer/theme/default/layer.css">
+
   <style>
     .layui-input-block input {
       width: 200px;
@@ -95,6 +97,7 @@
 <script src="/js/jquery-2.1.4.js" type="application/javascript"></script>
 <script src="/bootstrap-3.3.7/dist/js/bootstrap.js" type="application/javascript"></script>
 <script src="/layui/layui.js" type="application/javascript"></script>
+<script src="/layer/layer.js"></script>
 <script src="/js/xcConfirm.js"></script>
 <script>
   $(function() {
@@ -154,8 +157,17 @@
 
     // 添加
     $('#insert').click(function() {
-      var txt=  "添加添加";
-      window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.info);
+      layer.open({
+        title: false,
+        type: 2,
+        closeBtn: 0, //不显示关闭按钮
+        shade: 0.5,
+        area: ['455px', '455px'],
+        offset: 'auto',
+        anim: 2,
+        shadeClose: true,
+        content: ['/insertStudentTea', 'no']
+      });
     });
 
     // 查询

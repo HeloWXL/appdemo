@@ -87,10 +87,16 @@ public class HomeController {
     return "/counselor/leaveTable.html";
   }
 
-
-  @ApiOperation(value = "测试jsp")
-  @GetMapping("/to")
-  public String test(){
-    return "/login";
+  @ApiOperation(value = "跳转到添加学生界面")
+  @GetMapping("/insertStudent")
+  public String insertStudent(){
+    return "/counselor/insertStu.html";
   }
+
+  @ApiOperation(value = "跳转到添加教师界面")
+  @GetMapping("/insertStudentTea")
+  public String insertStudentTea(){
+    return "/counselor/insertTea.html";
+  }
+
 }

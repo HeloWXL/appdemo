@@ -5,10 +5,14 @@
 		<title>后台管理</title>
 		<link href="/bootstrap-3.3.7/dist/css/bootstrap.css" rel="stylesheet" />
 		<link href="/layui/css/layui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="/layer/theme/default/layer.css">
 		<link rel="shortcut icon" href="/ico/index.ico"/>
 		<style>
 			a{
 				text-decoration: none;
+			}
+			#info{
+				float: right;
 			}
 		</style>
 	</head>
@@ -17,18 +21,13 @@
 			<div class="row clearfix">
 				<div class="col-md-12 column">
 					<ul class="layui-nav layui-bg-blue">
-						<li class="layui-nav-item"><a href="">艳蓝导航</a></li>
-						<li class="layui-nav-item"><a href="">产品</a></li>
-						<li class="layui-nav-item"><a href="">大数据</a></li>
-						<li class="layui-nav-item">
-							<a href="javascript:;">解决方案</a>
+						<li class="layui-nav-item"><a href="">学生考勤App管理</a></li>
+						<li class="layui-nav-item" lay-unselect="" id="info">
+							<a href="javascript:;"><img src="/images/default.png" class="layui-nav-img">我</a>
 							<dl class="layui-nav-child">
-								<dd><a href="">移动模块</a></dd>
-								<dd><a href="">后台模版</a></dd>
-								<dd><a href="">电商平台</a></dd>
+								<dd><a href="javascript:;">退出登录</a></dd>
 							</dl>
 						</li>
-						<li class="layui-nav-item"><a href="">社区</a></li>
 					</ul>
 				</div>
 			</div>
@@ -94,27 +93,48 @@
 	<script src="/js/jquery-2.1.4.js" type="application/javascript"></script>
 	<script src="/bootstrap-3.3.7/dist/js/bootstrap.js" type="application/javascript"></script>
 	<script src="/layui/layui.js" type="application/javascript"></script>
+	<script src="/layer/layer.js"></script>
 	<script>
 		$(function() {
-			$("#student").click(function() {
-				$("iframe").attr("src", "/toStudentTable")
-			})
-			$("#teacher").click(function() {
-				$("iframe").attr("src", "/toTeacherTable")
-			})
-			$("#leave").click(function() {
-				$("iframe").attr("src", "/toLeaveTable")
-			})
-			$("#s").click(function() {
-				$("#success").fadeIn("slow");
-				$("#fail").fadeOut("slow");
-			})
 
-			$("#f").click(function() {
-				$("#fail").fadeIn("slow");
-				$("#success").fadeOut("slow");
-			})
-		})
+
+      $.ajax({
+        url:'/counselorApi/getCounselorSession',
+        data:{counselorrBean:'counselorsession'},
+        dataType:'json',
+        type:'post',
+        success:function (data) {
+          if (data.body == null) {
+            	layer.alert('管理员未登录',function() {
+								location.href="/toCounseLogin";
+              });
+          }else{
+            $('#info a').html('<img src="/images/default.png" class="layui-nav-img">'+data.body.counselorName);
+
+          }
+        }
+      });
+
+
+			$('#student').click(function() {
+				$('iframe').attr('src', '/toStudentTable');
+			});
+			$('#teacher').click(function() {
+				$('iframe').attr('src', '/toTeacherTable');
+			});
+			$('#leave').click(function() {
+				$('iframe').attr('src', '/toLeaveTable');
+			});
+			$('#s').click(function() {
+				$('#success').fadeIn('slow');
+				$('#fail').fadeOut('slow');
+			});
+
+			$('#f').click(function() {
+				$('#fail').fadeIn('slow');
+				$('#success').fadeOut('slow');
+			});
+		});
 
 		layui.use('element', function() {
 			var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
