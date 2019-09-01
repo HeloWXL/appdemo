@@ -15,7 +15,7 @@
 		</header>
 		<div class="mui-content">
 			<div class="center">
-				<img src="images/dogs.png" id="icon"/>
+				<img src="images/default.png" id="icon"/>
 			</div>
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
@@ -50,7 +50,6 @@
 				dataType:'json',
 				type:'post',
 				success:function(data) {
-					console.log(data.body);
 					if(data.body == true){
 							location.href='/student/index.html';
 					}else{

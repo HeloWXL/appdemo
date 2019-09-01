@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -49,7 +51,7 @@ public class TeacherController {
   }
 
   @ApiOperation(value = "获取教师的session对象")
-  @PostMapping("getTeacherSession")
+  @PostMapping("/getTeacherSession")
   public DataResult<Teacher> getTeacherSession(HttpServletRequest request,@RequestParam("teacherBean") String teacherBean){
     DataResult<Teacher> result = new DataResult<>();
     Teacher teacher = (Teacher) request.getSession().getAttribute(teacherBean);
@@ -102,6 +104,20 @@ public class TeacherController {
     result.setBody(teacherService.getTeacherByPage(pageNo,pageSize));
     return result;
   }
+
+  @ApiOperation(value = "清除教师的session对象")
+  @GetMapping("/removeTeacherSession")
+  public void removeTeacherSession(HttpServletRequest request, HttpServletResponse response){
+    request.getSession().removeAttribute("teachersession");
+    if ( request.getSession().getAttribute("teachersession") == null) {
+      try {
+        response.sendRedirect("/toTeaLogin");
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
 
 
 }

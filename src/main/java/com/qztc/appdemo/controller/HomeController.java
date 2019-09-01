@@ -20,6 +20,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
+
+  /**
+   * 学生
+   *
+   */
+
   @ApiOperation(value = "跳转到学生登录界面")
   @GetMapping("/toLogin")
   public String toLogin(){
@@ -56,6 +62,10 @@ public class HomeController {
     return "/student/leavelist.html";
   }
 
+
+/**
+ *  辅导员
+ */
 
   @ApiOperation(value = "跳转到辅导员登录界面")
   @GetMapping("/toCounseLogin")
@@ -97,6 +107,29 @@ public class HomeController {
   @GetMapping("/insertStudentTea")
   public String insertStudentTea(){
     return "/counselor/insertTea.html";
+  }
+
+  /**
+   * 教师
+   *
+   */
+
+  @ApiOperation(value = "跳转到添加教师登录")
+  @GetMapping("/toTeaLogin")
+  public String toTeaLogin(){
+    return "/teacher/login.html";
+  }
+
+  @ApiOperation(value = "跳转到教师首页界面")
+  @GetMapping("/toTeaindex")
+  public String toTeaindex(){
+    return "/teacher/index.html";
+  }
+
+  @ApiOperation(value = "跳转到教师信息界面")
+  @GetMapping("/toTeaPerson")
+  public String toTeaPerson(){
+    return "/teacher/person.html";
   }
 
 }

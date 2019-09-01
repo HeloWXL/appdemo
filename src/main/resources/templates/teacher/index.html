@@ -1,10 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>首页</title>
+  <meta charset="utf-8">
+  <title>教师首页</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link href="/css/mui.min.css" rel="stylesheet" />
+  <style>
+    body{
+      background-color: #EEEEEE;
+    }
+    .mui-content div{
+      border-radius: 15px;
+      width: 168px;
+      height: 148px;
+      background-color: #FFFFFF;
+      float: left;
+      margin: 11px 9px;
+    }
+    div a{
+      text-align: center;
+    }
+    a p{
+      color: #000000;
+    }
+    img{
+      margin-left: 35px;
+      margin-top: 15px;
+      border-radius: 15px;
+      width:100px;
+      height: 100px;
+    }
+    .mui-title{
+      color: #FFFFFF;
+    }
+
+  </style>
 </head>
+
 <body>
 
+<header class="mui-bar mui-bar-nav mui-badge-primary">
+  <h1 class="mui-title">教师首页</h1>
+</header>
+<div class="mui-content">
+  <div id="attendance">
+    <a href="">
+      <img src="/images/人脸识别.png" />
+      <p>添加课程</p>
+    </a>
+  </div>
+  <div id="mycourse">
+    <a href="">
+      <img src="/images/课程.png" />
+      <p>我的课程</p>
+    </a>
+  </div>
+  <div  id="attendancelist">
+    <a href="">
+      <img src="/images/考勤记录.png" />
+      <p>创建考勤</p>
+    </a>
+  </div>
+  <div id="mycourselist">
+    <a href="">
+      <img src="/images/课表管理.png" />
+      <p>考勤统计</p>
+    </a>
+  </div>
+</div>
+
+
+<!-- 底部选项卡 -->
+<nav class="mui-bar mui-bar-tab">
+  <a class="mui-tab-item mui-active" id="home">
+    <span class="mui-icon mui-icon-home"></span>
+    <span class="mui-tab-label">首页</span>
+  </a>
+  <a class="mui-tab-item">
+    <span class="mui-icon mui-icon-chatbubble"></span>
+    <span class="mui-tab-label">消息</span>
+  </a>
+  <a class="mui-tab-item" id="myinfo">
+    <span class="mui-icon mui-icon-person"></span>
+    <span class="mui-tab-label">我的信息</span>
+  </a>
+</nav>
 </body>
+<script src="/js/mui.min.js"></script>
+<script src="/js/jquery-2.1.4.js"></script>
+<script type="text/javascript">
+  mui.init()
+
+  mui("#attendance").on('tap','img',function(){
+    mui.alert("正在建设中.....")
+  })
+
+  mui("#mycourse").on('tap','img',function(){
+    mui.alert("正在建设中.....")
+  })
+
+  mui("#attendancelist").on('tap','img',function(){
+    mui.alert("正在建设中.....")
+  })
+
+  mui("#mycourselist").on('tap','img',function(){
+    mui.alert("正在建设中.....")
+  })
+
+
+  $("#myinfo").click(function() {
+    location.href='/teacher/person.html';
+  });
+  $("#home").click(function() {
+    location.href='/teacher/index.html';
+  });
+
+
+</script>
 </html>
