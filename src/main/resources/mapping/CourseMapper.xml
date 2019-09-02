@@ -15,8 +15,7 @@
     course_id, course_name, classArrangement, startTime, endTIme, profession, teacher_id, 
     ceate_time
   </sql>
-
-
+<!--start-->
   <resultMap id="selectCourseByTeacherTno" type="com.qztc.appdemo.model.Course" >
     <id column="course_id" property="courseId" jdbcType="INTEGER" />
     <result column="course_name" property="courseName" jdbcType="VARCHAR" />
@@ -24,20 +23,48 @@
     <result column="startTime" property="starttime" jdbcType="TIMESTAMP" />
     <result column="endTIme" property="endtime" jdbcType="TIMESTAMP" />
     <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
-
     <association property="teacher" javaType="com.qztc.appdemo.model.Teacher">
       <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
       <result column="teacher_job_title" property="teacherJobTitle" jdbcType="VARCHAR" />
     </association>
-
   </resultMap>
-
   <select id="selectCourseByTno" resultMap="selectCourseByTeacherTno" parameterType="map" >
     select c.course_name,c.course_id ,t.teacher_name,t.teacher_job_title,c.startTime,c.endTIme,c.classArrangement
     from course c , teacher t
     where c.teacher_id = t.teacher_id and t.teacher_id=#{teacherId,jdbcType=INTEGER}
      limit #{pageNo} , #{pageSize}
   </select>
+<!--end-->
+
+
+  <resultMap id="selectCourseDetailByCourseId" type="com.qztc.appdemo.model.Course" >
+    <id column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="classArrangement" property="classarrangement" jdbcType="INTEGER" />
+    <result column="startTime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="endTIme" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+    <association property="teacher" javaType="com.qztc.appdemo.model.Teacher">
+      <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+      <result column="teacher_job_title" property="teacherJobTitle" jdbcType="VARCHAR" />
+    </association>
+    <association property="professions" javaType="com.qztc.appdemo.model.Profession">
+      <result column="profession_name" property="professionName" jdbcType="VARCHAR" />
+      <result column="apartment" property="apartment" jdbcType="VARCHAR" />
+      <result column="school" property="school" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <select id="selectCourseDetailByCid" resultMap="selectCourseDetailByCourseId" parameterType="java.lang.Integer" >
+    select
+      c.course_name,c.classArrangement,c.startTime,c.endTIme,
+      t.teacher_name,t.teacher_job_title,
+      p.profession_name,p.apartment,p.school
+    from course c,teacher t ,profession p
+    where c.teacher_id = t.teacher_id AND  p.profession_id = c.profession AND course_id = #{courseId,jdbcType=INTEGER}
+  </select>
+
+
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

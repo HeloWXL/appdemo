@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.qztc.appdemo.model.Student;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 学生Mapper
  * @author xiayj
@@ -46,4 +49,11 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @return
      */
     Student selectBySno(String sno);
+
+    /**
+     * 根据学号查询学生的课程
+     * @param sno
+     * @return
+     */
+    List<Student> selectCourseBySno(String sno);
 }

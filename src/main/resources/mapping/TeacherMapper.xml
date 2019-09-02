@@ -23,7 +23,7 @@
     where teacher_id = #{teacherId,jdbcType=INTEGER}
   </delete>
 
-
+<!--start-->
   <resultMap id="TeacherAndProfessionMap" type="com.qztc.appdemo.model.Teacher" >
     <id column="teacher_id" property="teacherId" jdbcType="INTEGER" />
     <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
@@ -32,38 +32,29 @@
     <result column="teacher_sex" property="teacherSex" jdbcType="CHAR" />
     <result column="teacher_age" property="teacherAge" jdbcType="INTEGER" />
     <result column="profession_id" property="professionId" jdbcType="INTEGER" />
-
     <association property="profession" javaType="com.qztc.appdemo.model.Profession">
       <result column="profession_name" property="professionName" jdbcType="VARCHAR" />
       <result column="apartment" property="apartment" jdbcType="VARCHAR" />
       <result column="school" property="school" jdbcType="VARCHAR" />
     </association>
   </resultMap>
-
   <select id="selectByPrimaryKey" resultMap="TeacherAndProfessionMap" parameterType="java.lang.String" >
     select t.teacher_name,t.teacher_tno,t.teacher_job_title,t.teacher_sex,t.teacher_age,p.profession_name ,p.apartment ,p.school
     from teacher t ,profession p
     where t.profession_id = p.profession_id AND t.teacher_tno = #{teacherTno,jdbcType=VARCHAR}
   </select>
-
-
   <select id="selectByPage" resultMap="TeacherAndProfessionMap" parameterType="map" >
     select t.teacher_name,t.teacher_tno,t.teacher_job_title,t.teacher_sex,t.teacher_age,p.profession_name ,p.apartment ,p.school
     from teacher t ,profession p
     where t.profession_id = p.profession_id
     limit #{pageNo} , #{pageSize}
   </select>
-
-
-
-
-
+<!--end-->
   <select id="selectByTno" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select *
     from teacher
     where teacher_tno = #{teacherTno,jdbcType=VARCHAR}
   </select>
-
 
   <insert id="insertSelective" parameterType="com.qztc.appdemo.model.Teacher" >
     insert into teacher

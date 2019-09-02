@@ -102,4 +102,13 @@ public class CourseService {
     return map;
   }
 
+  /**
+   * 根据ID查询课程的详细信息
+   * @param cid
+   * @return
+   */
+  public Course selectCourseDetailByCid(Integer cid){
+    return courseMapper.selectCourseDetailByCid(cid);
+  }
+
 }

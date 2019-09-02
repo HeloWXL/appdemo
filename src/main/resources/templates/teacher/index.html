@@ -92,6 +92,22 @@
 <script type="text/javascript">
   mui.init()
 
+  $.ajax({
+    url: '/teacherApi/getTeacherSession',
+    data: {teacherBean: 'teachersession'},
+    dataType: 'json',
+    type: 'post',
+    async:false,
+    success: function(data) {
+      if (data.body == null) {
+        mui.alert('用户未登录', function() {
+          location.href = '/toTeaLogin';
+        });
+      }
+    }
+  });
+
+
   mui("#addCourse").on('tap','img',function(){
     location.href='/teacher/addcourse.html';
   })

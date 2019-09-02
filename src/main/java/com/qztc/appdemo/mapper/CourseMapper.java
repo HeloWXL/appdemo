@@ -50,4 +50,10 @@ public interface CourseMapper extends BaseMapper<Course> {
      */
     List<Course> selectCourseByTno(Map<String,Object> map);
 
+    /**
+     *  根据ID查询课程的详细信息
+     * @param cid
+     * @return
+     */
+    Course selectCourseDetailByCid(Integer cid);
 }

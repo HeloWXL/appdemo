@@ -86,4 +86,13 @@ public class StudentService {
   public Student selectBySno(String sno){
     return studentMapper.selectBySno(sno);
   }
+
+  /**
+   * 根据学生的序号查询学生课程
+   * @param sno
+   * @return
+   */
+  public  List<Student> selectCourseBySno(String sno){
+    return studentMapper.selectCourseBySno(sno);
+  }
 }

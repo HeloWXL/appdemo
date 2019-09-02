@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -124,4 +125,14 @@ public class StudentController {
       }
     }
   }
+
+  @ApiOperation(value = "根据学生的学号查询学生课程")
+  @GetMapping("/selectCourseBySno")
+  public  DataResult<List<Student>> selectCourseBySno(@RequestParam("sno") String sno){
+    DataResult<List<Student>> result = new DataResult<>();
+    result.setBody(studentService.selectCourseBySno(sno));
+    return result;
+  }
+
+
 }

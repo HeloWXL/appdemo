@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 学生
@@ -52,5 +53,6 @@ public class Student {
     @TableField(exist = false)
     private Profession profession;
 
-
+    @TableField(exist = false)
+    private List<Course> courseList ;
 }

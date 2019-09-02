@@ -29,7 +29,7 @@ public class Course {
     private Date starttime;
 
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-    @TableField("ednTime")
+    @TableField("endTIme")
     private Date endtime;
 
     @TableField("profession")
@@ -43,4 +43,7 @@ public class Course {
 
     @TableField(exist = false)
     private Teacher teacher;
+
+    @TableField(exist = false)
+    private Profession professions;
 }

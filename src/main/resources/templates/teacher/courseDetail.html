@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>课程详情</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link href="/css/mui.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/ico/app.ico"/>
+  <style type="text/css">
+    body{
+      font-size: 12px;
+    }
+
+    .mui-title {
+      color: #FFFFFF;
+    }
+    input{
+      font-size: 12px;
+    }
+    #success{
+      color: #FFFFFF;
+      background-color: #05b880;
+      border-radius: 0px 100px;
+      position: absolute;
+      top: 10px;
+      right: 2px;
+    }
+
+    #success{
+      color: #FFFFFF;
+      background-color: #d43f3a;
+      border-radius: 0px 100px;
+      position: absolute;
+      top: 10px;
+      right: 2px;
+    }
+
+    .mui-content{
+      background-color: #FFFFFF;
+    }
+
+  </style>
+</head>
+
+<body>
+<header class="mui-bar mui-bar-nav mui-badge-primary">
+  <span class="mui-icon mui-icon-back" onclick="javascript:history.back(-1);"></span>
+  <h1 class="mui-title">课程详情</h1>
+</header>
+
+<div class="mui-content">
+  <ul class="mui-table-view">
+    <li class="mui-table-view-cell">
+      <div class="mui-input-row">
+        <label>课程名</label>
+        <input type="text" class="mui-input-clear" th:value="${course.courseName}" disabled="true" >
+      </div>
+
+      <div class="mui-input-row">
+        <label>上课时间</label>
+        <input type="text" class="mui-input-clear" th:value="${course.classarrangement}" disabled="true" >
+      </div>
+
+      <div class="mui-input-row">
+        <label>开课时间</label>
+        <input type="text" class="mui-input-clear" th:value="${course.starttime}" disabled="true">
+      </div>
+      <div class="mui-input-row">
+        <label>结课时间</label>
+        <input type="text" class="mui-input-clear" th:value="${course.endtime}" disabled="true">
+      </div>
+
+      <div class="mui-input-row">
+        <label>教师姓名</label>
+        <input type="text" class="mui-input-clear" th:value="${course.teacher.teacherName}" disabled="true" id="end">
+      </div>
+
+      <div class="mui-input-row">
+        <label>教师职称</label>
+        <input type="text" class="mui-input-clear" th:value="${course.teacher.teacherJobTitle}" disabled="true" id="end">
+      </div>
+
+      <div class="mui-input-row">
+        <label>专业</label>
+        <input type="text" class="mui-input-clear" th:value="${course.profession.professionName}" disabled="true">
+      </div>
+
+      <div class="mui-input-row">
+        <label>学院</label>
+        <input type="text" class="mui-input-clear" th:value="${course.profession.apartment}" disabled="true">
+      </div>
+
+      <div class="mui-input-row">
+        <label>学校</label>
+        <input type="text" class="mui-input-clear" th:value="${course.profession.school}" disabled="true">
+      </div>
+
+  </ul>
+</div>
+<script src="/js/mui.min.js"></script>
+<script src="/js/jquery-2.1.4.js"></script>
+<script type="text/javascript">
+  mui.init({
+    gestureConfig:{
+      tap: true, //默认为true
+      swipe: true //默认为true
+    }
+  });
+  window.addEventListener('swiperight', function() {
+    history.back(-1);
+  });
+
+</script>
+</body>
+
+</html>
