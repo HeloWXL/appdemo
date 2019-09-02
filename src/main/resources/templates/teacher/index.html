@@ -44,13 +44,13 @@
   <h1 class="mui-title">教师首页</h1>
 </header>
 <div class="mui-content">
-  <div id="attendance">
+  <div id="addCourse">
     <a href="">
       <img src="/images/人脸识别.png" />
       <p>添加课程</p>
     </a>
   </div>
-  <div id="mycourse">
+  <div id="courselist">
     <a href="">
       <img src="/images/课程.png" />
       <p>我的课程</p>
@@ -92,12 +92,12 @@
 <script type="text/javascript">
   mui.init()
 
-  mui("#attendance").on('tap','img',function(){
-    mui.alert("正在建设中.....")
+  mui("#addCourse").on('tap','img',function(){
+    location.href='/teacher/addcourse.html';
   })
 
-  mui("#mycourse").on('tap','img',function(){
-    mui.alert("正在建设中.....")
+  mui("#courselist").on('tap','img',function(){
+    location.href='/teacher/courselist.html';
   })
 
   mui("#attendancelist").on('tap','img',function(){

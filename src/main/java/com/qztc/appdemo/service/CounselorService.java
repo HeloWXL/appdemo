@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.qztc.appdemo.mapper.CounselorMapper;
 import com.qztc.appdemo.model.Counselor;
+import com.qztc.appdemo.model.Course;
 import com.qztc.appdemo.utils.Md5Utils;
 import org.springframework.stereotype.Service;
 
@@ -70,7 +71,7 @@ public class CounselorService {
    */
   public Map<String, Object> getCounselorByPage(Integer pageNo, Integer pageSize) {
     EntityWrapper entityWrapper = new EntityWrapper();
-    List<Counselor> counselors = counselorMapper.selectPage(new Page<Course>(pageNo,pageSize),entityWrapper);
+    List<Counselor> counselors = counselorMapper.selectPage(new Page<Counselor>(pageNo,pageSize),entityWrapper);
     int count = counselorMapper.selectCount(entityWrapper);
     Map<String,Object> map = new HashMap<>();
     map.put("list",counselors);

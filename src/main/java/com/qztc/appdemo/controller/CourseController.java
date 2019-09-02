@@ -18,7 +18,7 @@ import java.util.Map;
  */
 @Api(tags = "课程接口")
 @RestController
-@RequestMapping("course")
+@RequestMapping("courseApi")
 public class CourseController {
   @Resource
   private CourseService courseService;
@@ -40,9 +40,12 @@ public class CourseController {
   }
 
   @ApiOperation(value = "添加课程信息")
-  @PostMapping("/insertStudent")
+  @PostMapping("/insertCourse")
   public DataResult<Integer> insertStudent(@RequestBody Course course){
     DataResult<Integer> result = new DataResult<>();
+
+
+
     result.setBody(courseService.insertSelective(course));
     return result;
   }
@@ -60,6 +63,17 @@ public class CourseController {
   public DataResult<Map<String,Object>> selectCourseByPage(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSieze") Integer pageSieze){
     DataResult<Map<String,Object>> result = new DataResult<>();
     result.setBody(courseService.getCourseByPage(pageNo,pageSieze));
+    return result;
+  }
+
+
+  @ApiOperation(value = "查询课程信息")
+  @GetMapping("/selectCourseListByTno")
+  public DataResult<Map<String,Object>> selectCourseListByTno(@RequestParam("pageNo") Integer pageNo,
+                                                              @RequestParam("pageSize") Integer pageSize,
+                                                              @RequestParam("tid") Integer tid){
+    DataResult<Map<String,Object>> result = new DataResult<>();
+    result.setBody(courseService.selectCourseByTno(pageNo,pageSize,tid));
     return result;
   }
 

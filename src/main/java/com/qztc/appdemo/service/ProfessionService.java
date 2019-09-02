@@ -3,6 +3,7 @@ package com.qztc.appdemo.service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.qztc.appdemo.mapper.ProfessionMapper;
+import com.qztc.appdemo.model.Course;
 import com.qztc.appdemo.model.Profession;
 import org.springframework.stereotype.Service;
 
@@ -67,7 +68,7 @@ public class ProfessionService {
    */
   public Map<String, Object> getProfessionByPage(Integer pageNo, Integer pageSize) {
     EntityWrapper entityWrapper = new EntityWrapper();
-    List<Profession> professions = professionMapper.selectPage(new Page<Course>(pageNo,pageSize),entityWrapper);
+    List<Profession> professions = professionMapper.selectPage(new Page<Profession>(pageNo,pageSize),entityWrapper);
     int count = professionMapper.selectCount(entityWrapper);
     Map<String,Object> map = new HashMap<>();
     map.put("list",professions);

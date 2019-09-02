@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.qztc.appdemo.model.Course;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author
@@ -38,4 +41,13 @@ public interface CourseMapper extends BaseMapper<Course> {
      * @return
      */
     int updateByPrimaryKeySelective(Course record);
+
+
+    /**
+     * 根据教师的Tno查询教师的课程
+     * @param map
+     * @return
+     */
+    List<Course> selectCourseByTno(Map<String,Object> map);
+
 }

@@ -14,27 +14,25 @@
   </resultMap>
 
   <resultMap id="StudentAndLeave" type="com.qztc.appdemo.model.Leave" >
-    <id column="leave_id" property="leaveId" jdbcType="INTEGER" />
+  <id column="leave_id" property="leaveId" jdbcType="INTEGER" />
+  <result column="student_sno" property="studentSno" jdbcType="VARCHAR" />
+  <result column="leave_title" property="leaveTitle" jdbcType="VARCHAR" />
+  <result column="leave_reason" property="leaveReason" jdbcType="VARCHAR" />
+  <result column="start_time" property="startTime" jdbcType="DATE" />
+  <result column="end_time" property="endTime" jdbcType="DATE" />
+  <result column="coundelor_id" property="coundelorId" jdbcType="INTEGER" />
+  <result column="is_read" property="isRead" jdbcType="INTEGER" />
+
+  <association property="student" javaType="com.qztc.appdemo.model.Student">
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
     <result column="student_sno" property="studentSno" jdbcType="VARCHAR" />
-    <result column="leave_title" property="leaveTitle" jdbcType="VARCHAR" />
-    <result column="leave_reason" property="leaveReason" jdbcType="VARCHAR" />
-    <result column="start_time" property="startTime" jdbcType="DATE" />
-    <result column="end_time" property="endTime" jdbcType="DATE" />
-    <result column="coundelor_id" property="coundelorId" jdbcType="INTEGER" />
-    <result column="is_read" property="isRead" jdbcType="INTEGER" />
+  </association>
 
-    <association property="student" javaType="com.qztc.appdemo.model.Student">
-      <result column="student_name" property="studentName" jdbcType="VARCHAR" />
-      <result column="student_sno" property="studentSno" jdbcType="VARCHAR" />
-    </association>
+  <association property="course" javaType="com.qztc.appdemo.model.Course">
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+  </association>
 
-    <association property="course" javaType="com.qztc.appdemo.model.Course">
-      <result column="course_name" property="courseName" jdbcType="VARCHAR" />
-    </association>
-
-  </resultMap>
-
-
+</resultMap>
   <resultMap id="CourseAndLeave" type="com.qztc.appdemo.model.Leave" >
     <id column="leave_id" property="leaveId" jdbcType="INTEGER" />
     <result column="student_sno" property="studentSno" jdbcType="VARCHAR" />
@@ -59,7 +57,6 @@
     where l.student_sno = s.student_sno and c.course_id = l.course_id  and l.leave_id = #{leaveId}
   </select>
 
-
   <select id="selectLeaveAndStudentByPage" resultMap="CourseAndLeave" parameterType="map" >
   select s.student_name,s.student_sno,l.leave_id,l.leave_title,l.leave_reason, l.start_time,l.end_time,c.course_name
     from leaves l ,student s ,course c
@@ -67,14 +64,12 @@
     limit #{pageNo} , #{pageSize}
   </select>
 
-
   <select id="selectByPage" resultMap="CourseAndLeave" parameterType="map" >
     select s.student_name,s.student_sno,l.leave_id,l.leave_title,l.leave_reason,l.is_read,l.start_time,l.end_time,c.course_name
     from leaves l ,student s ,course c
     where l.student_sno = s.student_sno and c.course_id = l.course_id
     order BY  l.start_time ASC
     limit #{pageNo} , #{pageSize}
-
   </select>
 
   <sql id="Base_Column_List" >

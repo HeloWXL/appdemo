@@ -3,6 +3,7 @@ package com.qztc.appdemo.model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -23,9 +24,11 @@ public class Course {
     @TableField("classarrangement")
     private Integer classarrangement;
 
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     @TableField("startTime")
     private Date starttime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     @TableField("ednTime")
     private Date endtime;
 
@@ -37,4 +40,7 @@ public class Course {
 
     @TableField("crete_time")
     private Date ceateTime;
+
+    @TableField(exist = false)
+    private Teacher teacher;
 }

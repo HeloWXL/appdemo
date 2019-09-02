@@ -1,10 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+  <meta charset="utf-8">
+  <title>我的课程</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link href="/css/mui.min.css" rel="stylesheet" />
+  <style>
+    .mui-title{
+      color: #FFFFFF;
+    }
+    #success{
+      border-radius: 0px 100px;
+      position: absolute;
+      top: 10px;
+      right: 2px;
+    }
+    #fail{
+      border-radius: 0px 100px;
+      position: absolute;
+      top: 10px;
+      right: 2px;
+    }
+    .mui-btn-outlined{
+      width: 100%;
+      border: none;
+      outline: none;
+    }
+  </style>
 </head>
+
 <body>
 
+<header class="mui-bar mui-bar-nav mui-badge-primary">
+  <span class="mui-icon mui-icon-back" onclick="history.back()"></span>
+  <h1 class="mui-title">我的课程</h1>
+</header>
+
+<div class="mui-content">
+  <ul class="mui-table-view" id="commentDetail" >
+
+  </ul>
+  <div id="loading" style="display: none;">
+    <button type="button" class="mui-btn mui-btn-outlined">加载</button>
+  </div>
+</div>
+<script src="/js/jquery-2.1.4.js"></script>
+<script src="/js/mui.min.js"></script>
+<script type="text/javascript">
+  mui.init();
+
+
+  $(function() {
+    var teacherId = '';
+    var pageNo = 1;
+    $.ajax({
+      url: '/teacherApi/getTeacherSession',
+      data: {teacherBean: 'teachersession'},
+      dataType: 'json',
+      type: 'post',
+      async:false,
+      success: function(data) {
+        if (data.body == null) {
+          mui.alert('用户未登录', function() {
+            location.href = '/toTeaLogin';
+          });
+        }else{
+          teacherId = data.body.teacherId;
+          return teacherId;
+        }
+      }
+    });
+
+
+
+    $.ajax({
+      url:'/courseApi/selectCourseListByTno/',
+      dataType:'json',
+      type:'get',
+      data:{pageNo:pageNo,pageSize:10,tid:teacherId},
+      contentType: 'application/json; charset=utf-8',
+      success:function(data) {
+        for(var i = 0 ;i<data.body.list.length;i++){
+          var $node = $('<li class="mui-table-view-cell">\n' +
+              '      <span class="mui-badge mui-badge-success" id="success">未开课</span>\n' +
+              '      <a href = "/leaveApi/selectByPrimaryKey/'+data.body.list[i].courseId+'">\n' +
+              '        <h4>'+data.body.list[i].courseName+'</h4>\n' +
+              '        <p>\n' +
+              '          上课时间：<span>'+data.body.list[i].classarrangement+'</span>\n' +
+              '        </p>\n' +
+              '        <p>\n' +
+              '          专业：<span>信管</span>\n' +
+              '        </p>\n' +
+              '        <p>\n' +
+              '          上课人数：<span>'+data.body.count+'</span>人\n' +
+              '        </p>\n' +
+              '        <p>开课时间：<span>'+data.body.list[i].starttime+'</span>&nbsp;&nbsp;&nbsp;结课时间：<span>'+data.body.list[i].endtime+'</span></p>\n' +
+              '      </a>\n' +
+              '    </li>');
+          $("#commentDetail").append($node);
+        }
+      }
+    });
+
+  });
+
+
+</script>
 </body>
+
 </html>

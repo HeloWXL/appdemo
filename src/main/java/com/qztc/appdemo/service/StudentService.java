@@ -3,6 +3,7 @@ package com.qztc.appdemo.service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.qztc.appdemo.mapper.StudentMapper;
+import com.qztc.appdemo.model.Course;
 import com.qztc.appdemo.model.Student;
 import com.qztc.appdemo.utils.Md5Utils;
 import org.springframework.stereotype.Service;
@@ -69,7 +70,7 @@ public class StudentService {
    */
   public Map<String, Object> getStudentByPage(Integer pageNo, Integer pageSize) {
     EntityWrapper entityWrapper = new EntityWrapper();
-    List<Student> students = studentMapper.selectPage(new Page<Course>(pageNo,pageSize),entityWrapper);
+    List<Student> students = studentMapper.selectPage(new Page<Student>(pageNo,pageSize),entityWrapper);
     int count = studentMapper.selectCount(entityWrapper);
     Map<String,Object> map = new HashMap<>();
     map.put("list",students);

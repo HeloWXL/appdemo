@@ -130,6 +130,17 @@ public class HomeController {
     return "/teacher/person.html";
   }
 
+  @ApiOperation(value = "跳转到添加课程页面")
+  @GetMapping("/addCourse")
+  public String addCourse(){
+    return "/teacher/addcourse.html";
+  }
+
+  @ApiOperation(value = "跳转到课程列表界面--教师端")
+  @GetMapping("/courseList")
+  public String courseList(){
+    return "/teacher/courselist.html";
+  }
   /**
    * 测试
    *

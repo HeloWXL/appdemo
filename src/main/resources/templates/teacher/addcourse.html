@@ -1,10 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+  <meta charset="utf-8">
+  <title>添加课程</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link href="/css/mui.min.css" rel="stylesheet" />
+  <link href="/css/mui.picker.min.css" rel="stylesheet" />
+  <style>
+    body{
+      font-size: 13px;
+    }
+    .mui-title {
+      color: #FFFFFF;
+    }
+
+    input{
+      font-size: 13px;
+
+    }
+    .btn{
+      text-align: center;
+    }
+    button{
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    .mui-table-view{
+      height: 550px;
+    }
+  </style>
 </head>
 <body>
+<header class="mui-bar mui-bar-nav mui-badge-primary">
+  <span class="mui-icon mui-icon-back" onclick="history.back()"></span>
+  <h1 class="mui-title">添加课程</h1>
+</header>
+<div class="mui-content">
+  <div id="cotent">
+    <div class="location">
+      <ul class="mui-table-view">
+        <li class="mui-table-view-cell">
+          <div class="mui-input-row">
+            <label>授课教师：</label>
+            <input type="text" class="mui-input-clear" id="teacherName" disabled="true">
+          </div>
+          <div class="mui-input-row">
+            <label>课程名：</label>
+            <input type="text" class="mui-input-clear"  id="courseName" placeholder="请输入课程名">
+          </div>
+          <div class="mui-input-row">
+            <label>专业：</label>
+            <input type="text" class="mui-input-clear" placeholder="请选择上课的专业" id="prefession" name="">
+          </div>
 
+          <div class="mui-input-row">
+            <label>上课安排：</label>
+            <input type="text" class="mui-input-clear" placeholder="请选择开始时间" id="dateSelect">
+          </div>
+
+          <div class="mui-input-row">
+            <label>开课时间：</label>
+            <input type="text" class="mui-input-clear" placeholder="请选择开课时间" id="startTime">
+          </div>
+          <div class="mui-input-row">
+            <label>结课时间：</label>
+            <input type="text" class="mui-input-clear" placeholder="请选择结课时间" id="endTime">
+          </div>
+          <div class="btn">
+            <button type="button" class="mui-btn mui-btn-primary" id="submit">提交</button>
+            <button type="button" class="mui-btn">重置</button>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
 </body>
+<script src="/js/jquery-2.1.4.js"></script>
+<script src="/js/mui.min.js"></script>
+<script src="/js/mui.picker.min.js"></script>
+<script src="/js/mui.poppicker.js"></script>
+<script type="text/javascript" src="/js/addcourse.js"></script>
 </html>

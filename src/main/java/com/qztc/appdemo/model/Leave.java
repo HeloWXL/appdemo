@@ -29,11 +29,11 @@ public class Leave {
     private String leaveReason;
 
     @TableField("start_time")
-    @JSONField(format="yyyy-MM-dd")
+    @JSONField(format = "yyyy-MM-dd")
     private Date startTime;
 
     @TableField("end_time")
-    @JSONField(format="yyyy-MM-dd")
+    @JSONField(format = "yyyy-MM-dd")
     private Date endTime;
 
     @TableField("coundelor_id")
@@ -49,4 +49,6 @@ public class Leave {
 
     @TableField(exist = false)
     private Course course;
+
+
 }
