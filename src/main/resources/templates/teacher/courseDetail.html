@@ -64,36 +64,36 @@
 
       <div class="mui-input-row">
         <label>开课时间</label>
-        <input type="text" class="mui-input-clear" th:value="${course.starttime}" disabled="true">
+        <input type="text" class="mui-input-clear" th:value="${course.starttime}" disabled="true" id="start">
       </div>
       <div class="mui-input-row">
         <label>结课时间</label>
-        <input type="text" class="mui-input-clear" th:value="${course.endtime}" disabled="true">
+        <input type="text" class="mui-input-clear" th:value="${course.endtime}" disabled="true" id="end">
       </div>
 
       <div class="mui-input-row">
         <label>教师姓名</label>
-        <input type="text" class="mui-input-clear" th:value="${course.teacher.teacherName}" disabled="true" id="end">
+        <input type="text" class="mui-input-clear" th:value="${course.teacher.teacherName}" disabled="true" >
       </div>
 
       <div class="mui-input-row">
         <label>教师职称</label>
-        <input type="text" class="mui-input-clear" th:value="${course.teacher.teacherJobTitle}" disabled="true" id="end">
+        <input type="text" class="mui-input-clear" th:value="${course.teacher.teacherJobTitle}" disabled="true" >
       </div>
 
       <div class="mui-input-row">
         <label>专业</label>
-        <input type="text" class="mui-input-clear" th:value="${course.profession.professionName}" disabled="true">
+        <input type="text" class="mui-input-clear" th:value="${course.professions.professionName}" disabled="true">
       </div>
 
       <div class="mui-input-row">
         <label>学院</label>
-        <input type="text" class="mui-input-clear" th:value="${course.profession.apartment}" disabled="true">
+        <input type="text" class="mui-input-clear" th:value="${course.professions.apartment}" disabled="true">
       </div>
 
       <div class="mui-input-row">
         <label>学校</label>
-        <input type="text" class="mui-input-clear" th:value="${course.profession.school}" disabled="true">
+        <input type="text" class="mui-input-clear" th:value="${course.professions.school}" disabled="true">
       </div>
 
   </ul>
@@ -110,6 +110,23 @@
   window.addEventListener('swiperight', function() {
     history.back(-1);
   });
+
+
+  $(function() {
+    var startTime = GMTToStr($("#start").val())
+    $("#start").val(startTime)
+
+    var endTime = GMTToStr($("#end").val())
+    $("#end").val(endTime)
+  });
+
+  function GMTToStr(time){
+    var date = new Date(time);
+    var Str=date.getFullYear() + '-' +
+        (date.getMonth()+1) + '-' +
+        date.getDate();
+    return Str;
+  }
 
 </script>
 </body>

@@ -20,7 +20,7 @@ import java.util.Map;
  */
 @Api(tags = "课程接口")
 @Controller
-@RequestMapping("courseApi")
+@RequestMapping("/courseApi")
 public class CourseController {
   @Resource
   private CourseService courseService;
@@ -48,9 +48,6 @@ public class CourseController {
   @ResponseBody
   public DataResult<Integer> insertStudent(@RequestBody Course course){
     DataResult<Integer> result = new DataResult<>();
-
-
-
     result.setBody(courseService.insertSelective(course));
     return result;
   }
@@ -67,7 +64,8 @@ public class CourseController {
   @ApiOperation(value = "查询课程信息")
   @GetMapping("/selectCourseByPage")
   @ResponseBody
-  public DataResult<Map<String,Object>> selectCourseByPage(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSieze") Integer pageSieze){
+  public DataResult<Map<String,Object>> selectCourseByPage(@RequestParam("pageNo") Integer pageNo,
+                                                           @RequestParam("pageSieze") Integer pageSieze){
     DataResult<Map<String,Object>> result = new DataResult<>();
     result.setBody(courseService.getCourseByPage(pageNo,pageSieze));
     return result;
@@ -88,7 +86,15 @@ public class CourseController {
   @GetMapping("/selectCourseDetailByCid/{cid}")
   public String selectCourseDetailByCid(@PathVariable("cid") Integer cid, Model model){
     model.addAttribute("course",courseService.selectCourseDetailByCid(cid));
-    return "/courseDetail";
+    return "/teacher/courseDetail.html";
+  }
+
+
+  @ApiOperation(value = "根据ID查询课程的详细信息")
+  @GetMapping("/selectCourseDetailByCid/")
+  @ResponseBody
+  public Course selectCourseDetailByCid(@RequestParam("cid") Integer cid){
+    return courseService.selectCourseDetailByCid(cid);
   }
 
 }

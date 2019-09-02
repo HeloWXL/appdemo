@@ -142,11 +142,6 @@ public class HomeController {
     return "/teacher/courselist.html";
   }
 
-  @ApiOperation(value = "跳转到查询课程的详细信息")
-  @GetMapping("/courseDetail")
-  public String courseDetail(){
-    return "/teacher/courseDetail.html";
-  }
   /**
    * 测试
    *
