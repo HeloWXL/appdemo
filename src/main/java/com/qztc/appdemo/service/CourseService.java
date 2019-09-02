@@ -1,7 +1,6 @@
 package com.qztc.appdemo.service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.qztc.appdemo.mapper.CourseMapper;
 import com.qztc.appdemo.model.Course;
 import org.springframework.stereotype.Service;
@@ -71,10 +70,10 @@ public class CourseService {
     EntityWrapper entityWrapper = new EntityWrapper();
     data.put("pageNo",(pageNo - 1) * pageSize);
     data.put("pageSize",pageSize);
-    List<Course> courses = courseMapper.selectCourseByPage(data);
+//    List<Course> courses = courseMapper.selectCourseByPage(data);
     int count = courseMapper.selectCount(entityWrapper);
     Map<String,Object> map = new HashMap<>();
-    map.put("list",courses);
+//    map.put("list",courses);
     map.put("count",count);
     return map;
   }

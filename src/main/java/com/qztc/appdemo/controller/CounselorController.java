@@ -2,9 +2,7 @@ package com.qztc.appdemo.controller;
 
 import com.qztc.appdemo.config.DataResult;
 import com.qztc.appdemo.model.Counselor;
-import com.qztc.appdemo.model.Course;
 import com.qztc.appdemo.model.Profession;
-import com.qztc.appdemo.model.Teacher;
 import com.qztc.appdemo.service.CounselorService;
 import com.qztc.appdemo.service.ProfessionService;
 import com.qztc.appdemo.utils.Md5Utils;

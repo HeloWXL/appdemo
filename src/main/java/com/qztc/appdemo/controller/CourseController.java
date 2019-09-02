@@ -2,7 +2,6 @@ package com.qztc.appdemo.controller;
 
 import com.qztc.appdemo.config.DataResult;
 import com.qztc.appdemo.model.Course;
-import com.qztc.appdemo.model.Student;
 import com.qztc.appdemo.service.CourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

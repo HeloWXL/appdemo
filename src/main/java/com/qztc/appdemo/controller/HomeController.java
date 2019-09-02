@@ -20,12 +20,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
-
   /**
    * 学生
    *
    */
-
   @ApiOperation(value = "跳转到学生登录界面")
   @GetMapping("/toLogin")
   public String toLogin(){
@@ -132,4 +130,14 @@ public class HomeController {
     return "/teacher/person.html";
   }
 
+  /**
+   * 测试
+   *
+   */
+
+  @ApiOperation(value = "测试界面")
+  @GetMapping("/uploads")
+  public String uploads(){
+    return "/test/upload.html";
+  }
 }

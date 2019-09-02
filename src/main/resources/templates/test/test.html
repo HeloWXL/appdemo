@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="../../static/layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- 模块名 -->
+<blockquote class="layui-elem-quote">模块名：测试</blockquote>
+
+
+<form class="layui-form" action="">
+  <div class="layui-form-item">
+
+    <div class="layui-inline">
+      <label class="layui-form-label">日期：</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input"  id="test1">
+      </div>
+    </div>
+
+    <div class="layui-inline">
+      <label class="layui-form-label">姓名</label>
+      <div class="layui-input-inline">
+        <input type="text" name="name"  autocomplete="off" class="layui-input">
+      </div>
+    </div>
+
+    <div class="layui-inline">
+      <label class="layui-form-label">入职批次：</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input"  id="test2">
+      </div>
+    </div>
+
+    <div class="layui-inline">
+      <label class="layui-form-label">指标名称：</label>
+      <div class="layui-input-inline">
+        <input type="text" name="indicatorName"  autocomplete="off" class="layui-input">
+      </div>
+    </div>
+
+    <div class="layui-inline">
+      <label class="layui-form-label" id="demo1">机构名称：</label>
+      <div class="layui-input-inline">
+        <select name="checkCategory" lay-verify="">
+          <option value="010" selected>省客服服务中心(合)</option>
+          <option value="021" >外部系统</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="layui-inline" id="btn">
+      <div class="layui-inline">
+        <button type="button" class="layui-btn layui-btn-primary">查询</button>
+      </div>
+      <div class="layui-inline">
+        <button type="button" class="layui-btn layui-btn-primary">重置</button>
+      </div>
+    </div>
+  </div>
+</form>
+<div>
+  <table class="layui-hide" id="test" lay-filter="peoplefilter"></table>
+</div>
+
+</body>
+
+<!-- 表格标签工具栏 -->
+<script type="text/html" id="toolbarPeople">
+  <div class="layui-btn-container">
+    <div class="layui-btn-group">
+      <button type="button"  lay-event="statistics" class="layui-btn layui-btn-normal layui-btn-sm"><i class="layui-icon">&#x1005;</i>统计</button>
+    </div>
+  </div>
+</script>
+
+<script type="text/html" id="templateState">
+  {{#  if(d.state==1){ }}
+  <a class="layui-btn layui-btn-xs layui-btn-disabled"  >审核</a>
+  {{# }  else if(d.state==0){ }}
+  <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
+  {{#  } }}
+</script>
+
+<script src="../../static/layui/layui.js" type="application/javascript"></script>
+
+<script>
+  layui.use([ 'form', 'table', 'layer' ,'laydate'], function() {
+    form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+    table = layui.table;
+    var laydate = layui.laydate;
+    var layer = layui.layer;
+
+    laydate.render({
+      elem: '#test1' //指定元素
+      ,type: 'month'
+      ,value: '2019-09'
+    });
+
+    layui.use('table', function(){
+      var table = layui.table;
+      table.render({
+        elem: '#test'   //绑定的tableID
+        ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        ,toolbar:'#toolbarPeople'
+        ,cols: [[     //列名集合
+          {field:'id', width:80, title: 'ID', sort: true}
+          ,{field:'checkbox', type:'checkbox'}
+          ,{field:'username', width:80, title: '用户名'}
+          ,{field:'sex', width:80, title: '性别', sort: true}
+          ,{field:'city', width:80, title: '城市'}
+          ,{field:'sign', title: '签名', width: '30%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+          ,{field:'experience', title: '积分', sort: true}
+          ,{field: 'state', title: '状态', width: 80,toolbar: '#templateState'}
+        ]]
+        // 数据绑定
+        ,data: [{
+          "id": "1001"
+          ,"username": "wangxl"
+          ,"sex": "男"
+          ,"city": "合肥"
+          ,"sign": "HelloWorld"
+          ,"experience":"啦啦啦啦啦啦啦啦"
+          ,"state":"1"
+        }, {
+          "id": "1001"
+          ,"username": "wangxl"
+          ,"sex": "男"
+          ,"city": "合肥"
+          ,"sign": "HelloWorld"
+          ,"experience":"啦啦啦啦啦啦啦啦"
+          ,"state":"0"
+        }, {
+          "id": "1001"
+          ,"username": "wangxl"
+          ,"sex": "男"
+          ,"city": "合肥"
+          ,"sign": "HelloWorld"
+          ,"experience":"啦啦啦啦啦啦啦啦"
+          ,"state":"1"
+        }, {
+          "id": "1001"
+          ,"username": "wangxl"
+          ,"sex": "男"
+          ,"city": "合肥"
+          ,"sign": "HelloWorld"
+          ,"experience":"啦啦啦啦啦啦啦啦"
+          ,"state":"0"
+        }, {
+          "id": "1001"
+          ,"username": "wangxl"
+          ,"sex": "男"
+          ,"city": "合肥"
+          ,"sign": "HelloWorld"
+          ,"experience":"啦啦啦啦啦啦啦啦"
+          ,"state":"1"
+        },{
+          "id": "1001"
+          ,"username": "wangxl"
+          ,"sex": "男"
+          ,"city": "合肥"
+          ,"sign": "HelloWorld"
+          ,"experience":"啦啦啦啦啦啦啦啦"
+          ,"state":"0"
+        }]
+        //,skin: 'line' //表格风格
+        //,even: true
+        ,page: true //是否显示分页
+        ,limits: [5, 7, 10]
+        ,limit: 5 //每页默认显示的数量
+        // ,height: $(document).height() - $('#people').offset().top - 20
+
+      });
+
+
+
+
+    });
+
+
+
+    //监听表格中复选框是否被选中   --需要对表格设定lay-filter="peoplefilter"
+    var ischeck = "";
+    table.on('checkbox(peoplefilter)', function(obj){
+      ischeck = obj.checked;
+    })
+
+    //工具栏监听事件
+    table.on('toolbar(peoplefilter)', function(obj){
+      switch(obj.event) {
+        case 'statistics':
+          if (ischeck == false) {
+            layer.open({
+              title: '提示信息'
+              , content: '你未选择一条信息'
+            });
+          } else {
+            layer.open({
+              title: '提示信息'
+              , content: '计算成功'
+            });
+          }
+          break;
+      }
+    });
+
+
+
+
+  })
+
+
+
+
+</script>
+</html>

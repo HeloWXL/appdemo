@@ -1,9 +1,7 @@
 package com.qztc.appdemo.service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.qztc.appdemo.mapper.LeaveMapper;
-import com.qztc.appdemo.model.Course;
 import com.qztc.appdemo.model.Leave;
 import org.springframework.stereotype.Service;
 

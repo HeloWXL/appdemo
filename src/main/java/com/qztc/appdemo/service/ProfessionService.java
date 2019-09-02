@@ -3,7 +3,6 @@ package com.qztc.appdemo.service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.qztc.appdemo.mapper.ProfessionMapper;
-import com.qztc.appdemo.model.Course;
 import com.qztc.appdemo.model.Profession;
 import org.springframework.stereotype.Service;
 

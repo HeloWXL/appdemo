@@ -2,33 +2,39 @@ package com.qztc.appdemo.model;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 
 import java.util.Date;
 
 /**
- * 课程
- * @author xiayj
+ *
+ * @author
  * @since
  */
 @Data
-@TableName(value = "course")
 public class Course {
     @TableId(value = "course_id",type = IdType.AUTO)
     private Integer courseId;
 
-    @TableField("coundelor_name")
+    @TableField("course_name")
     private String courseName;
 
+    @TableField("classarrangement")
+    private Integer classarrangement;
+
+    @TableField("startTime")
+    private Date starttime;
+
+    @TableField("ednTime")
+    private Date endtime;
+
+    @TableField("profession")
+    private Integer profession;
+
     @TableField("teacher_id")
-    private int teacherId;
+    private Integer teacherId;
 
-    @TableField("create_time")
+    @TableField("crete_time")
     private Date ceateTime;
-
-    @TableField(exist = false)
-    private Teacher teacher;
-
 }

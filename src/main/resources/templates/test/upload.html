@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="/layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+
+<div style="width: 400px;height: 400px;margin: 0 auto">
+  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>拖拽上传</legend>
+  </fieldset>
+  <div class="layui-upload-drag" id="test10">
+    <i class="layui-icon"></i>
+    <p>点击上传，或将文件拖拽到此处</p>
+  </div>
+</div>
+
+</body>
+
+
+<script src="/layui/layui.js" type="application/javascript"></script>
+<script>
+  layui.use('upload', function() {
+    var $ = layui.jquery
+        , upload = layui.upload;
+
+    //拖拽上传
+    upload.render({
+      elem: '#test10'
+      ,url: '/uploadAreaFile/'
+      ,method:'post'
+      ,accept:'images'
+      // ,accept: 'file' //普通文件
+      ,exts: 'png|jpg' //只允许上传压缩文件
+      // ,data: {} //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+      // ,size: 60 //限制文件大小，单位 KB
+      ,done: function(res){
+        console.log(res)
+      }
+    });
+
+  })
+</script>
+</html>

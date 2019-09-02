@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.qztc.appdemo.mapper.CounselorMapper;
 import com.qztc.appdemo.model.Counselor;
-import com.qztc.appdemo.model.Course;
 import com.qztc.appdemo.utils.Md5Utils;
 import org.springframework.stereotype.Service;
 
